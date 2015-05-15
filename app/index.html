@@ -5,23 +5,11 @@
     <title>Social network</title>
 </head>
 <body>
-<!--register page begin-->
-    <div ng-controller="UserController">
-        <form name="registerForm" ng-submit="register()">
-            <input type="text" placeholder="Username" ng-model="registerData.username"/><br/>
-            <input type="password" placeholder="Password" ng-model="registerData.password"/><br/>
-            <input type="password" placeholder="Confirm password" ng-model="registerData.confirmPassword"/><br/>
-            <input type="text" placeholder="Name" ng-model="registerData.name"/><br/>
-            <input type="text" placeholder="Email" ng-model="registerData.email"/><br/>
-            Gender:<input type="radio" name="gender" value="0" ng-model="registerData.gender"/>
-            <input type="radio" name="gender" value="1" />
-            <input type="radio" name="gender" value="2" /><br/>
-            <button type="submit">Register</button>
-        </form>
-    </div>
-<!--register page end-->
+
+    <div ng-view></div>
 
     <script src="lib/angular/angular.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-route.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services/authentication.js"></script>
     <script src="js/controllers/UserController.js"></script>
