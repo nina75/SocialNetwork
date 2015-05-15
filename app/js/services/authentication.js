@@ -10,7 +10,7 @@ app.factory('authentication', function($http, $q) {
                 defer.resolve(data);
             }).error(function(error) {
                 defer.reject(error);
-                alert('Register failed');
+
             })
 
         return defer.promise;
@@ -18,16 +18,35 @@ app.factory('authentication', function($http, $q) {
 
     service.login = function(loginData) {
         var defer = $q.defer();
-        $http.post('http://softuni-social-network.azurewebsites.net/api/users/register', loginData)
+        $http.post('http://softuni-social-network.azurewebsites.net/api/users/login', loginData)
             .success(function(data) {
                 defer.resolve(data);
             }).error(function(error) {
-                console.log('greshkaaaaaaa');
                 defer.reject(error);
             })
 
         return defer.promise;
     }
+
+    service.logout = function() {
+        var defer = $q.defer();
+        var headers = {
+            Authorization: 'Bearer ' + sessionStorage['accessToken']
+        }
+        $http.post('http://softuni-social-network.azurewebsites.net/api/users/logout', null, {headers: headers})
+            .success(function(data) {
+                defer.resolve(data);
+            }).error(function(error){
+                defer.reject(error);
+            })
+
+        return defer.promise;
+    }
+
+    //service.isLogged = function () {
+    //    return sessionStorage['accessToken'];
+    //};
+
 
 
 

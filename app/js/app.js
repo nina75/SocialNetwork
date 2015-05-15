@@ -6,17 +6,25 @@ app.config(function ($routeProvider,$locationProvider) {
     //$locationProvider.html5Mode(true);
 
     $routeProvider
-        //.when('/login', {
-        //    templateUrl:'templates/login.html',
-        //    controller:'MainController'
-        //})
+        .when('/', {
+            templateUrl:'partials/initial.html',
+            controller:'UserController'
+        })
+        .when('/login', {
+            templateUrl:'partials/login.html',
+            controller:'UserController'
+        })
         .when('/register', {
             templateUrl:'partials/register.html',
             controller:'UserController'
+
         })
-        .when('/', {
-            templateUrl:'partials/initial.html'
+        .when('/home', {
+            templateUrl:'partials/home.html',
+            controller:'UserController'
+
         })
+
 
         //.when('/user/home', {
         //    templateUrl:'templates/all-ads.html',
