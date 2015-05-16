@@ -1,0 +1,12 @@
+<form name="registerForm" ng-submit="editProfile()">
+    <input type="text" ng-model="userData.name" placeholder="Name"><br/>
+    <input type="text" ng-model="userData.email" placeholder="Email"><br/>
+    Gender:<input type="radio" name="gender" value="0" ng-model="userData.gender"/>
+    <input type="radio" name="gender" value="1" />
+    <input type="radio" name="gender" value="2" /><br/>
+
+
+    <a href="#/home">Cancel</a>
+    <button type="submit">Save changes</button>
+</form>
+</div>

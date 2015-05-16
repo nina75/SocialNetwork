@@ -7,21 +7,30 @@ app.config(function ($routeProvider,$locationProvider) {
 
     $routeProvider
         .when('/', {
-            templateUrl:'partials/initial.html',
-            controller:'UserController'
+            templateUrl:'partials/initial.html'
         })
         .when('/login', {
             templateUrl:'partials/login.html',
-            controller:'UserController'
+            controller:'AuthenticationController'
         })
         .when('/register', {
             templateUrl:'partials/register.html',
-            controller:'UserController'
+            controller:'AuthenticationController'
 
         })
         .when('/home', {
             templateUrl:'partials/home.html',
-            controller:'UserController'
+            controller:'AuthenticationController'
+
+        })
+        .when('/user/:username', {
+            templateUrl:'partials/user-wall.html',
+            controller:'AuthenticationController'
+
+        })
+        .when('/profile', {
+            templateUrl:'partials/edit-profile.html',
+            controller:'AuthenticationController'
 
         })
 
@@ -74,6 +83,6 @@ app.config(function ($routeProvider,$locationProvider) {
         //    templateUrl:'templates/delete-ad.html',
         //    controller:'MainController'
         //})
-        //.otherwise({redirectTo: '/'})
+        .otherwise({redirectTo: '/'})
 
 });

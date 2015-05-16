@@ -28,11 +28,8 @@ app.factory('authentication', function($http, $q) {
         return defer.promise;
     }
 
-    service.logout = function() {
+    service.logout = function(headers) {
         var defer = $q.defer();
-        var headers = {
-            Authorization: 'Bearer ' + sessionStorage['accessToken']
-        }
         $http.post('http://softuni-social-network.azurewebsites.net/api/users/logout', null, {headers: headers})
             .success(function(data) {
                 defer.resolve(data);
@@ -43,16 +40,41 @@ app.factory('authentication', function($http, $q) {
         return defer.promise;
     }
 
-    //service.isLogged = function () {
-    //    return sessionStorage['accessToken'];
-    //};
+    service.getUserProfile = function(success, error) {
+        $http.get('http://softuni-social-network.azurewebsites.net/api/me', {headers: this.getHeaders()})
+            .success(function(data){
+                success(data)
+            })
+            .error(function(data){
+                error(data);
+            });
 
+    }
 
+    service.editProfile = function(userData, success, error) {
+        $http.put('http://softuni-social-network.azurewebsites.net/api/me', userData, {headers: this.getHeaders()})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
+    }
 
+    service.setSessionStorage = function (serverData) {
+        sessionStorage['accessToken'] = serverData.access_token;
+        sessionStorage['username'] = serverData.userName;
+    };
 
-    //service.login = function() {
-    //    $http.post
-    //}
+    service.clearSessionStorage = function () {
+        delete sessionStorage['accessToken'];
+        delete sessionStorage['username'];
+    };
+
+    service.getHeaders = function() {
+        return {
+            Authorization: "Bearer " + sessionStorage['accessToken']
+        };
+    }
 
     return service;
 })

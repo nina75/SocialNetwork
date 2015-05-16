@@ -1,2 +1,7 @@
-<p>Айде мара бе, {{user}}</p>
-<a href="#/" ng-click="logout()">Logout</a>
+<header>
+    <a href="#/user/{{username}}" ng-bind="username" ng-click="getUserProfile()"></a>
+    <a href="#/profile">Edit profile</a>
+    <a href="#/" ng-click="logout()">Logout</a>
+</header>
+
+
