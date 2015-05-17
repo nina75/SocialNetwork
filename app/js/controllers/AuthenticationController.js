@@ -4,7 +4,7 @@ app.controller('AuthenticationController', function AuthenticationController($sc
     var headers = {
         Authorization: "Bearer " + sessionStorage['accessToken']
     }
-
+    
     $scope.username = sessionStorage['username'];
 
     $scope.register = function(){
@@ -40,16 +40,10 @@ app.controller('AuthenticationController', function AuthenticationController($sc
             })
     }
 
-    $scope.getUserProfile = function() {
-        authentication.getUserProfile(function(data) {
-            console.log(data);
-            $scope.userData = data;
-        }, function(error){
-            console.log(error);
-        })
-    }
 
-    console.log($scope.userData);
+    
+
+
 
     //$scope.editProfile($scope.userData, function(data) {
     //    console.log(data);

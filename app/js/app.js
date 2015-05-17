@@ -20,17 +20,17 @@ app.config(function ($routeProvider,$locationProvider) {
         })
         .when('/home', {
             templateUrl:'partials/home.html',
-            controller:'AuthenticationController'
+            controller:'MainController'
 
         })
         .when('/user/:username', {
             templateUrl:'partials/user-wall.html',
-            controller:'AuthenticationController'
+            controller:'MainController'
 
         })
         .when('/profile', {
             templateUrl:'partials/edit-profile.html',
-            controller:'AuthenticationController'
+            controller:'MainController'
 
         })
 

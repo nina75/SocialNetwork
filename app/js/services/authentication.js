@@ -43,12 +43,11 @@ app.factory('authentication', function($http, $q) {
     service.getUserProfile = function(success, error) {
         $http.get('http://softuni-social-network.azurewebsites.net/api/me', {headers: this.getHeaders()})
             .success(function(data){
-                success(data)
+                success(data);
             })
             .error(function(data){
                 error(data);
             });
-
     }
 
     service.editProfile = function(userData, success, error) {
