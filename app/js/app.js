@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('SocialNetwork', ['ngRoute']);
+var app = angular.module('SocialNetwork', ['ngRoute', 'naif.base64']);
 
 app.config(function ($routeProvider,$locationProvider) {
     //$locationProvider.html5Mode(true);
@@ -30,6 +30,11 @@ app.config(function ($routeProvider,$locationProvider) {
         })
         .when('/profile', {
             templateUrl:'partials/edit-profile.html',
+            controller:'MainController'
+
+        })
+        .when('/changepassword', {
+            templateUrl:'partials/change-password.html',
             controller:'MainController'
 
         })

@@ -1,8 +1,11 @@
 <header ng-controller="AuthenticationController">
-    <a href="#/user/{{userData.username}}" ng-bind="userData.name" ng-click="getUserProfile()">
-        <span><img src="" ng-src={{userData.profileImageData}} alt="Няма да кажа"/></span>
-    </a>
+    <div>
+        <a href="#/user/{{userData.username}}" ng-bind="userData.name" ng-click="getUserProfile()"></a>
+        <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="{{userData.username}}" style="width:30px;height:30px"/>
+    </div>
+
     <a href="#/profile">Edit profile</a>
+    <a href="#/changepassword">Change password</a>
     <a href="#/" ng-click="logout()">Logout</a>
 </header>
 

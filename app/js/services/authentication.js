@@ -28,6 +28,15 @@ app.factory('authentication', function($http, $q) {
         return defer.promise;
     }
 
+    service.changePassword = function(userData, headers, success, error) {
+        $http.put('http://softuni-social-network.azurewebsites.net/api/me/changepassword', userData, {headers: headers})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
+    }
+
     service.logout = function(headers) {
         var defer = $q.defer();
         $http.post('http://softuni-social-network.azurewebsites.net/api/users/logout', null, {headers: headers})
