@@ -22,4 +22,8 @@ app.controller('MainController', function MainController($scope, $location, auth
         })
     }
 
+    $scope.removeImage = function () {
+        $scope.userData.changeImage = "";
+    };
+
 });

@@ -4,8 +4,9 @@
     Gender:<input type="radio" name="gender" value="0" ng-model="userData.gender"/>
     <input type="radio" name="gender" value="1" ng-model="userData.gender"/>
     <input type="radio" name="gender" value="2" ng-model="userData.gender"/><br/>
-
-
+    
+    Profile picture:
+    <img src="" ng-src="{{userData.profileImageData}}" alt="Profile image"/>
     <a href="#/home">Cancel</a>
     <button type="submit">Save changes</button>
 </form>
