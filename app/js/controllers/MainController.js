@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MainController', function MainController($scope, $location, authentication) {
+app.controller('MainController', function MainController($scope, $location, authentication, posts) {
     var headers = {
         Authorization: "Bearer " + sessionStorage['accessToken']
     }
@@ -12,6 +12,13 @@ app.controller('MainController', function MainController($scope, $location, auth
             $scope.userData = data;
         }, function(error) {
             alert('Unsuccesful get user data');
+        })
+
+        posts.getNewFeedPages(headers, function(postsData) {
+            $scope.postsData = postsData;
+            
+        }, function(error) {
+            alert('Йок');
         })
     }
 
@@ -40,4 +47,8 @@ app.controller('MainController', function MainController($scope, $location, auth
             alert('Йок');
         })
     }
+    
+
+    $scope.likeButtonText = $scope.liked ? 'Unlike' : 'Like';
+    
 });

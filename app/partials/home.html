@@ -1,12 +1,29 @@
-<header ng-controller="AuthenticationController">
-    <div>
-        <a href="#/user/{{userData.username}}" ng-bind="userData.name" ng-click="getUserProfile()"></a>
-        <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="{{userData.username}}" style="width:30px;height:30px"/>
-    </div>
+<div ng-include="'partials/header.html'"></div>
 
-    <a href="#/profile">Edit profile</a>
-    <a href="#/changepassword">Change password</a>
-    <a href="#/" ng-click="logout()">Logout</a>
-</header>
+<div ng-controller="PostsController">
+    <ul>
+        <li ng-repeat="post in postsData" style="border:1px solid pink">
+            <p>Author<img src="" style="width:30px;height:30px" data-ng-src="data:image/png;base64,{{post.author.profileImageData}}" />
+                {{post.author.username}}{{post.author.name}}
+            </p>
+            <p>
+                WallOwner<img src="" style="width:30px;height:30px" data-ng-src="data:image/png;base64,{{post.wallOwner.profileImageData}}" />
+                {{post.wallOwner.name}}
+            </p>
+            <p>{{post.postContent}}</p>
+            <p>{{post.date}}</p>
+            <p>
+                <span>Likes:{{post.likesCount}}</span>
+                <span>Liked:{{post.liked}}</span>
+                <span>Comments:{{post.totalCommentsCount}}</span>
+                 <ul>
+                    <li ng-repeat="comment in post.comments">{{comment.commentContent}}</li>
+                </ul>
 
+                <button ng-click="likeUnlikePost(post)">{{post.liked | likeStatus}}</button>
+                <button ng-click="commentPost(post)">Comment</button>
+            </p>
+        </li>
+    </ul>
+</div>
 
