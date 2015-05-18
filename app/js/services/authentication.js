@@ -87,6 +87,15 @@ app.factory('authentication', function($http, $q) {
         })
     }
 
+    service.getFriendsRequests = function(success, error) {
+        $http.get('http://softuni-social-network.azurewebsites.net/api/me/requests', {headers:this.getHeaders()})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
+    }
+
     service.setSessionStorage = function (serverData) {
         sessionStorage['accessToken'] = serverData.access_token;
         sessionStorage['username'] = serverData.userName;

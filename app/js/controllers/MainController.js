@@ -55,6 +55,25 @@ app.controller('MainController', function MainController($scope, $location, auth
         })
     }
 
+    var searchUser = function(term) {
+        authentication.searchUser(term, function(data) {
+            $scope.foundUsers = data;
+        }, function(error) {
+            console.log(error);
+        })
+    }
+    
+    var getFriendsRequests = function() {
+        authentication.getFriendsRequests(function(data){
+            $scope.requestsData = data;
+        }, function(error) {
+            console.log(error);
+        })
+    }
+
+    $scope.searchUser = searchUser;
+    $scope.getFriendsRequests = getFriendsRequests;
+
     $scope.likeButtonText = $scope.liked ? 'Unlike' : 'Like';
     
 });

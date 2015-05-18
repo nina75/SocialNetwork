@@ -4,9 +4,17 @@
         <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="{{userData.username}}" style="width:30px;height:30px"/>
     </div>
 
+    <button ng-click="getFriendsRequests()">Request</button>
+    <span></span>
+
     <a href="#/profile">Edit profile</a>
     <a href="#/changepassword">Change password</a>
     <a href="#/" ng-click="logout()">Logout</a>
 
-    <input type="text" ng-model="search"/>
+    <form ng-submit="searchUser(search)">
+        <input type="text" ng-model="search" ng-change="" />
+        <button type="submit">Search</button>
+    </form>
+
+
 </header>
