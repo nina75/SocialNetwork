@@ -20,6 +20,13 @@ app.controller('MainController', function MainController($scope, $location, auth
         }, function(error) {
             alert('Йок');
         })
+
+        authentication.getUserFriends(function(data) {
+            $scope.friendsCount = data.length;
+            $scope.friendsData = data;
+        }, function(error) {
+            console.log(error);
+        })
     }
 
     $scope.editProfile = function() {
@@ -47,7 +54,6 @@ app.controller('MainController', function MainController($scope, $location, auth
             alert('Йок');
         })
     }
-    
 
     $scope.likeButtonText = $scope.liked ? 'Unlike' : 'Like';
     

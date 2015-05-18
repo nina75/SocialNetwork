@@ -30,8 +30,13 @@ app.factory('posts', function($http) {
             })
     }
 
-    service.commentPost = function(postId, headers, success, error) {
-        
+    service.commentPost = function(postId, commentData, headers, success, error) {
+        $http.post('http://softuni-social-network.azurewebsites.net/api/posts/' + postId + '/comments', commentData, {headers:headers})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
     }
 
     return service;

@@ -16,14 +16,38 @@
                 <span>Likes:{{post.likesCount}}</span>
                 <span>Liked:{{post.liked}}</span>
                 <span>Comments:{{post.totalCommentsCount}}</span>
-                 <ul>
-                    <li ng-repeat="comment in post.comments">{{comment.commentContent}}</li>
-                </ul>
+                <!--<button ng-click="showComments(post)">View comments</button>-->
+                <!--<div ng-show="showComments">-->
+                    <!--<ul>-->
+                        <!--<li ng-repeat="comment in post.comments">{{comment.commentContent}}</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+
 
                 <button ng-click="likeUnlikePost(post)">{{post.liked | likeStatus}}</button>
-                <button ng-click="commentPost(post)">Comment</button>
             </p>
         </li>
     </ul>
+</div>
+
+<div>
+    <ul>
+        <span>Friends: {{friendsCount}}</span>
+        <li ng-repeat="friend in friendsData | filter: search">
+            <img src="" data-ng-src="data:image/png;base64,{{friend.profileImageData}}" alt="{{friend.username}}" style="width:30px;height:30px"/>
+            <p>
+                Username:{{friend.username}}
+            </p>
+            <p>
+                Name: {{friend.name}}
+            </p>
+            <p>
+                Gender: {{friend.gender}}
+            </p>
+            <hr/>
+        </li>
+    </ul>
+
+
 </div>
 

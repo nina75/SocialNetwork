@@ -59,6 +59,16 @@ app.factory('authentication', function($http, $q) {
             });
     }
 
+    service.getUserFriends = function(success, error) {
+        $http.get('http://softuni-social-network.azurewebsites.net/api/me/friends', {headers: this.getHeaders()})
+            .success(function(data){
+                success(data);
+            })
+            .error(function(data){
+                error(data);
+            });
+    }
+
     service.editProfile = function(userData, success, error) {
         $http.put('http://softuni-social-network.azurewebsites.net/api/me', userData, {headers: this.getHeaders()})
             .success(function(data) {
@@ -66,6 +76,15 @@ app.factory('authentication', function($http, $q) {
             }).error(function(data) {
                 error(data);
             })
+    }
+
+    service.searchUser = function(searchTerm, success, error) {
+        $http.get('http://softuni-social-network.azurewebsites.net/api/users/search?searchTerm=' + searchTerm, {headers: this.getHeaders()})
+        .success(function(data) {
+            success(data);
+        }).error(function(data) {
+            error(data);
+        })
     }
 
     service.setSessionStorage = function (serverData) {

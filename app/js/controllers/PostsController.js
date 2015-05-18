@@ -26,7 +26,15 @@ app.controller('PostsController', function PostsController($scope, posts) {
         }
     }
 
-    $scope.commentPost = function(post) {
+    $scope.showComments = false;
+    
 
+    $scope.commentPost = function(post) {
+        $scope.commentContent = 'MAsaasa';
+        posts.commentPost(post.id, $scope.commentData, headers, function(data) {
+            alert('Ok');
+        }, function(error) {
+            alert('Tz');
+        })
     }
 })
