@@ -2,6 +2,8 @@
 
 var app = angular.module('SocialNetwork', ['ngRoute', 'naif.base64']);
 
+app.constant('BASE_URL', 'http://softuni-social-network.azurewebsites.net/api')
+
 app.config(function ($routeProvider,$locationProvider) {
     //$locationProvider.html5Mode(true);
 

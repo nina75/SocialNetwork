@@ -3,11 +3,12 @@
 <div ng-controller="PostsController">
     <ul>
         <li ng-repeat="post in postsData" style="border:1px solid pink">
-            <p>Author<img src="" style="width:30px;height:30px" data-ng-src="data:image/png;base64,{{post.author.profileImageData}}" />
+            <p>Author
+                <img src="" data-ng-src="{{post.author.profileImageData}}" alt="{{post.author.username}}" style="width:30px;height:30px" />
                 {{post.author.username}}{{post.author.name}}
             </p>
             <p>
-                WallOwner<img src="" style="width:30px;height:30px" data-ng-src="data:image/png;base64,{{post.wallOwner.profileImageData}}" />
+                WallOwner<img src="" style="width:30px;height:30px" data-ng-src="{{post.wallOwner.profileImageData}}" />
                 {{post.wallOwner.name}}
             </p>
             <p>{{post.postContent}}</p>
@@ -48,7 +49,7 @@
         </li>
     </ul>
 </div>
-Friend requests:{{requestsData}}
+Friend requests:{{requestsCount}}
 <hr/>
-Found users:{{foundUsers}}
+
 

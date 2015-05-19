@@ -4,17 +4,46 @@
         <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="{{userData.username}}" style="width:30px;height:30px"/>
     </div>
 
-    <button ng-click="getFriendsRequests()">Request</button>
-    <span></span>
+    <span>Friend requests:{{requestsCount}}</span>
+
+    <div ng-mousedown="showRequests = !showRequests" ng-init="showRequests=false">Request</div>
+
+
+    <div ng-show="showRequests" style="position:absolute;background-color: white" >
+        {{requestsCount}} results total
+        <ul>
+            <li ng-repeat="request in requestsData">
+                {{request.user.name}}
+                <img src="" data-ng-src="data:image/png;base64,{{request.user.profileImageData}}" alt="{{request.user.username}}" style="width:30px;height:30px"/>
+                <button ng-click="approveFriendRequest(request.id)">Accept</button>
+                <button ng-click="rejectFriendRequest(request.id)">Reject</button>
+            </li>
+        </ul>
+        {{requestsData}}
+    </div>
+
+
 
     <a href="#/profile">Edit profile</a>
     <a href="#/changepassword">Change password</a>
     <a href="#/" ng-click="logout()">Logout</a>
 
     <form ng-submit="searchUser(search)">
-        <input type="text" ng-model="search" ng-change="" />
+        <input type="text" ng-model="search" />
         <button type="submit">Search</button>
     </form>
+
+    <div ng-show="showFoundUsers">
+        <ul>
+            <li ng-repeat="user in foundUsers">
+                <a href="">
+                    {{user.name}}
+                    <img src="" data-ng-src="data:image/png;base64,{{user.profileImageData}}" alt="{{user.username}}" style="width:30px;height:30px"/>
+                </a>
+            </li>
+        </ul>
+        <button ng-click="hideFoundUsers()">Hide</button>
+    </div>
 
 
 </header>

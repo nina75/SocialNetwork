@@ -1,35 +1,20 @@
 'use strict';
 
-app.factory('authentication', function($http, $q) {
+app.factory('authentication', function($http, BASE_URL) {
     var service = {};
 
-    service.register = function(registerData) {
-        var defer = $q.defer();
-        $http.post('http://softuni-social-network.azurewebsites.net/api/users/register', registerData)
-            .success(function(data, status, headers, config) {
-                defer.resolve(data);
-            }).error(function(error) {
-                defer.reject(error);
-
-            })
-
-        return defer.promise;
-    }
-
-    service.login = function(loginData) {
-        var defer = $q.defer();
-        $http.post('http://softuni-social-network.azurewebsites.net/api/users/login', loginData)
+    //authentication
+    service.register = function(registerData, success, error) {
+        $http.post(BASE_URL + '/users/register', registerData)
             .success(function(data) {
-                defer.resolve(data);
-            }).error(function(error) {
-                defer.reject(error);
+                success(data);
+            }).error(function(data) {
+                error(data)
             })
-
-        return defer.promise;
     }
 
-    service.changePassword = function(userData, headers, success, error) {
-        $http.put('http://softuni-social-network.azurewebsites.net/api/me/changepassword', userData, {headers: headers})
+    service.login = function(loginData, success, error) {
+        $http.post(BASE_URL + '/users/login', loginData)
             .success(function(data) {
                 success(data);
             }).error(function(data) {
@@ -37,20 +22,37 @@ app.factory('authentication', function($http, $q) {
             })
     }
 
-    service.logout = function(headers) {
-        var defer = $q.defer();
-        $http.post('http://softuni-social-network.azurewebsites.net/api/users/logout', null, {headers: headers})
+    service.logout = function(headers, success, error) {
+        $http.post(BASE_URL + '/users/logout', null, {headers: headers})
             .success(function(data) {
-                defer.resolve(data);
-            }).error(function(error){
-                defer.reject(error);
+                success(data);
+            }).error(function(data){
+                error(data);
             })
+    }
 
-        return defer.promise;
+    service.searchUser = function(searchTerm, success, error) {
+        $http.get(BASE_URL + '/users/search?searchTerm=' + searchTerm, {headers: this.getHeaders()})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
+    }
+
+
+    //data about me
+    service.changePassword = function(userData, headers, success, error) {
+        $http.put(BASE_URL + '/me/changepassword', userData, {headers: headers})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
     }
 
     service.getUserProfile = function(success, error) {
-        $http.get('http://softuni-social-network.azurewebsites.net/api/me', {headers: this.getHeaders()})
+        $http.get(BASE_URL + '/me', {headers: this.getHeaders()})
             .success(function(data){
                 success(data);
             })
@@ -60,7 +62,7 @@ app.factory('authentication', function($http, $q) {
     }
 
     service.getUserFriends = function(success, error) {
-        $http.get('http://softuni-social-network.azurewebsites.net/api/me/friends', {headers: this.getHeaders()})
+        $http.get(BASE_URL + '/me/friends', {headers: this.getHeaders()})
             .success(function(data){
                 success(data);
             })
@@ -70,7 +72,7 @@ app.factory('authentication', function($http, $q) {
     }
 
     service.editProfile = function(userData, success, error) {
-        $http.put('http://softuni-social-network.azurewebsites.net/api/me', userData, {headers: this.getHeaders()})
+        $http.put(BASE_URL + '/me', userData, {headers: this.getHeaders()})
             .success(function(data) {
                 success(data);
             }).error(function(data) {
@@ -78,17 +80,35 @@ app.factory('authentication', function($http, $q) {
             })
     }
 
-    service.searchUser = function(searchTerm, success, error) {
-        $http.get('http://softuni-social-network.azurewebsites.net/api/users/search?searchTerm=' + searchTerm, {headers: this.getHeaders()})
-        .success(function(data) {
-            success(data);
-        }).error(function(data) {
-            error(data);
-        })
+    service.getFriendsRequests = function(success, error) {
+        $http.get(BASE_URL + '/me/requests', {headers:this.getHeaders()})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
     }
 
-    service.getFriendsRequests = function(success, error) {
-        $http.get('http://softuni-social-network.azurewebsites.net/api/me/requests', {headers:this.getHeaders()})
+    service.approveFriendRequest = function(requestId, success, error) {
+        $http.put(BASE_URL + '/me/requests/' +requestId+ '?status=approved', null, {headers:this.getHeaders()})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
+    }
+
+    service.rejectFriendRequest = function(requestId, success, error) {
+        $http.put(BASE_URL + '/me/requests/' + requestId + '?status=rejected', null, {headers:this.getHeaders()})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
+    }
+
+    service.getNewFeedPages = function(headers, success, error) {
+        $http.get(BASE_URL + '/me/feed?StartPostId=&PageSize=5', {headers:headers})
             .success(function(data) {
                 success(data);
             }).error(function(data) {
