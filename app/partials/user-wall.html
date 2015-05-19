@@ -6,7 +6,9 @@
         <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="Oi" style="width:150px;height:150px"/><br/>
     </div>
     <div style="position: absolute;bottom:15px;left: 300px;font-size:30px;color:#fff">{{userData.name}}</div>
-    <img ng-src="{{userData.gender | genderIcon}}"/>
+    <div style="position: absolute;bottom:15px;left:15px">
+        <img ng-src="{{userData.gender | genderIcon}}"/>
+    </div>
 </div>
 
 id:{{userData.id}}<br/>
