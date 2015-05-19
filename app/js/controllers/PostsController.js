@@ -2,6 +2,7 @@
 
 app.controller('PostsController', function PostsController($scope, posts, authentication) {
 
+    //home - like, unlike post
     var likeUnlikePost = function(post) {
         if(!post.liked) {
             posts.likePost(post.id, authentication.getHeaders(), function(data) {
@@ -23,6 +24,7 @@ app.controller('PostsController', function PostsController($scope, posts, authen
         }
     }
 
+    //
     var commentPost = function(post) {
         $scope.commentContent = 'MAsaasa';
         posts.commentPost(post.id, $scope.commentData, authentication.getHeaders(), function(data) {

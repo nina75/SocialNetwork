@@ -1,7 +1,10 @@
-<header ng-controller="AuthenticationController">
+<header>
     <div>
         <a href="#/user/{{userData.username}}" ng-bind="userData.name" ng-click="getUserProfile()"></a>
         <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="{{userData.username}}" style="width:30px;height:30px"/>
+    </div>
+    <div>
+        <a href="#/home">Home</a>
     </div>
 
     <span>Friend requests:{{requestsCount}}</span>

@@ -5,7 +5,7 @@ app.factory('authentication', function($http, BASE_URL) {
 
     var serviceUrl = BASE_URL + '/users'
 
-    //authentication
+    //user register
     service.register = function(registerData, success, error) {
         $http.post(serviceUrl + '/register', registerData)
             .success(function(data) {
@@ -15,6 +15,7 @@ app.factory('authentication', function($http, BASE_URL) {
             })
     }
 
+    //user login
     service.login = function(loginData, success, error) {
         $http.post(serviceUrl + '/login', loginData)
             .success(function(data) {
@@ -24,6 +25,7 @@ app.factory('authentication', function($http, BASE_URL) {
             })
     }
 
+    //user logout
     service.logout = function(success, error) {
         $http.post(serviceUrl + '/logout', null, {headers: this.getHeaders()})
             .success(function(data) {
@@ -33,6 +35,7 @@ app.factory('authentication', function($http, BASE_URL) {
             })
     }
 
+    //search user by name
     service.searchUser = function(searchTerm, success, error) {
         $http.get(serviceUrl + '/search?searchTerm=' + searchTerm, {headers: this.getHeaders()})
             .success(function(data) {

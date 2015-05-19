@@ -2,6 +2,7 @@
 
 app.controller('AuthenticationController', function AuthenticationController($scope, $location, $routeParams, authentication) {
 
+    //initial page - register
     var register = function() {
         authentication.register($scope.registerData, function() {
             authentication.setSessionStorage(data);
@@ -11,6 +12,7 @@ app.controller('AuthenticationController', function AuthenticationController($sc
         })
     }
 
+    //initial page - login
     var login = function() {
         authentication.login($scope.loginData, function(data) {
             authentication.setSessionStorage(data);
@@ -20,17 +22,6 @@ app.controller('AuthenticationController', function AuthenticationController($sc
         })
     }
 
-    var logout = function() {
-        authentication.logout(function (data) {
-            authentication.clearSessionStorage();
-            alert('Logout successful');
-        }, function (error) {
-            console.log(error);
-        })
-    }
-
     $scope.register = register;
     $scope.login = login;
-    $scope.logout = logout;
-
 });

@@ -5,6 +5,7 @@ app.factory('posts', function($http, BASE_URL) {
 
     var serviceUrl = BASE_URL + '/Posts';
 
+    //like post
     service.likePost = function(postId, headers, success, error) {
         $http.post(serviceUrl + '/' + postId + '/likes', null, {headers:headers})
             .success(function(data) {
@@ -14,6 +15,7 @@ app.factory('posts', function($http, BASE_URL) {
             })
     }
 
+    //unlike post
     service.unlikePost = function(postId, headers, success, error) {
         $http.delete(serviceUrl + '/' + postId + '/likes', {headers:headers})
             .success(function(data) {
@@ -23,6 +25,7 @@ app.factory('posts', function($http, BASE_URL) {
             })
     }
 
+    //add comments to post
     service.commentPost = function(postId, commentData, headers, success, error) {
         $http.post(serviceUrl + '/' + postId + '/comments', commentData, {headers:headers})
             .success(function(data) {
