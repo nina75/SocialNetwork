@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MainController', function MainController($scope, $location, $route, authentication, userData) {
+app.controller('MainController', function MainController($scope, $location, $route, authentication, userData, friendsData) {
 
     var headers = authentication.getHeaders();
 
@@ -9,7 +9,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
         userData.getUserProfile(headers, function(data) {
             $scope.userData = data;
         }, function(error) {
-            alert('Unsuccesful get user data');
+            alert('Unsuccessful get user data');
         })
     }
 
@@ -130,7 +130,6 @@ app.controller('MainController', function MainController($scope, $location, $rou
     $scope.searchUser = searchUser;
     $scope.hideFoundUsers = hideFoundUsers;
     $scope.getUserFriends = getUserFriends;
-
 
     if ($scope.username) {
         getUserProfile();

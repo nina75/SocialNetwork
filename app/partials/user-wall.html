@@ -1,17 +1,20 @@
 <div ng-include="'partials/header.html'"></div>
 
+<!--get data about me-->
+<!--id, username, name, email, gender, profileImageData, coverImageData -->
 <div style="position: relative">
     <img src="" data-ng-src="data:image/png;base64,{{userData.coverImageData}}" alt="Oi" style="width:1200px;height:200px" />
     <div style="position: absolute;bottom:0">
         <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="Oi" style="width:150px;height:150px"/><br/>
     </div>
-    <div style="position: absolute;bottom:15px;left: 300px;font-size:30px;color:#fff">{{userData.name}}</div>
+    <div style="position: absolute;bottom:15px;left: 300px;font-size:30px;color:pink">{{userData.name}}</div>
     <div style="position: absolute;bottom:15px;left:15px">
         <img ng-src="{{userData.gender | genderIcon}}"/>
     </div>
 </div>
 
-id:{{userData.id}}<br/>
-username: {{userData.username}}<br/>
-gender: {{userData.gender}}<br/>
-
+<ul>
+    <li ng-repeat="post in userWallData">
+        {{post.postContent}}
+    </li>
+</ul>

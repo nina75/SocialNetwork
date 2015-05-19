@@ -1,6 +1,6 @@
 <header>
     <div>
-        <a href="#/user/{{userData.username}}" ng-bind="userData.name" ng-click="getUserProfile()"></a>
+        <a href="#/user/me" ng-bind="userData.name"></a>
         <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="{{userData.username}}" style="width:30px;height:30px"/>
     </div>
     <div>
@@ -25,8 +25,6 @@
         {{requestsData}}
     </div>
 
-
-
     <a href="#/profile">Edit profile</a>
     <a href="#/changepassword">Change password</a>
     <a href="#/" ng-click="logout()">Logout</a>
@@ -47,7 +45,6 @@
         </ul>
         <button ng-click="hideFoundUsers()">Hide</button>
     </div>
-
 
 </header>
 <hr/>

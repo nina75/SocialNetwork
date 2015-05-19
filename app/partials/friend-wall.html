@@ -1,0 +1,43 @@
+<div ng-include="'partials/header.html'"></div>
+
+<div ng-controller="FriendWallController">
+    <div style="position: relative">
+        <img src="" data-ng-src="data:image/png;base64,{{userFullData.coverImageData}}" alt="Oi" style="width:1200px;height:200px" />
+        <div style="position: absolute;bottom:0">
+            <img src="" data-ng-src="data:image/png;base64,{{userFullData.profileImageData}}" alt="Oi" style="width:150px;height:150px"/><br/>
+        </div>
+        <div style="position: absolute;bottom:15px;left: 300px;font-size:30px;color:pink">{{userFullData.name}}</div>
+        <div style="position: absolute;bottom:15px;left:15px">
+            <img ng-src="{{userFullData.gender | genderIcon}}"/>
+        </div>
+    </div>
+    <hr/>
+
+    <div>
+        <ul>
+            <li ng-repeat="post in userPostsData">
+                <p>{{post.postContent}}</p>
+                <p>by: {{post.author.username}}</p>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+<!--get friend wall by pages-->
+<!--[ {
+          id,
+          author:{id,profileImageData, username, name, gender},
+          wallOwner:{id, profileImage Data, username, name, gender},
+          postContent,
+          date,
+          likesCount,
+          liked,
+          totalCommentsCount,
+          comments:[{id, author:{id, profileImageData, username, name, gender}, likesCount, commentContent, date, liked}, {}]
+       },
+       {.....},
+       {.....}
+    ]-->
+
+<!--get friend's detailed friends list-->
