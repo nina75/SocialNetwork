@@ -35,7 +35,7 @@
     <ul>
         <span>Friends: {{friendsCount}}</span>
         <li ng-repeat="friend in friendsData | filter: search">
-            <img src="" data-ng-src="data:image/png;base64,{{friend.profileImageData}}" alt="{{friend.username}}" style="width:30px;height:30px"/>
+            <img src="" data-ng-src="{{friend.profileImageData}}" alt="{{friend.username}}" style="width:30px;height:30px"/>
             <p>
                 Username:{{friend.username}}
             </p>

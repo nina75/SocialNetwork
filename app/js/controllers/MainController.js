@@ -1,9 +1,11 @@
 'use strict';
 
-app.controller('MainController', function MainController($scope, $location, $route, authentication, posts) {
-   
+app.controller('MainController', function MainController($scope, $location, $route, authentication, userData) {
+
+    var headers = authentication.getHeaders();
+
     var getUserProfile = function() {
-        authentication.getUserProfile(function(data) {
+        userData.getUserProfile(headers, function(data) {
             $scope.userData = data;
         }, function(error) {
             alert('Unsuccesful get user data');
@@ -11,7 +13,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
     }
 
     var getUserFriends = function() {
-        authentication.getUserFriends(function(data) {
+        userData.getUserFriends(headers, function(data) {
             $scope.friendsCount = data.length;
             $scope.friendsData = data;
         }, function(error) {
@@ -37,7 +39,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             $scope.userData.coverImageData = $scope.coverImage.base64;
         }
 
-        authentication.editProfile($scope.userData, function(data) {
+        userData.editProfile(headers, $scope.userData, function(data) {
             alert('Successful edit');
             $location.path('home');
         }, function(error) {
@@ -46,7 +48,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
     }
 
     var changePassword = function() {
-        authentication.changePassword($scope.userData, authentication.getHeaders(), function(data){
+        userData.changePassword($scope.userData, headers, function(data){
             authentication.clearSessionStorage();
             alert('Password changed');
             $location.path('login');
@@ -56,25 +58,27 @@ app.controller('MainController', function MainController($scope, $location, $rou
     }
 
     var approveFriendRequest = function(requestId) {
-        authentication.approveFriendRequest(requestId, function(data) {
+        userData.approveFriendRequest(headers, requestId, function(data) {
             alert('Request accepted');
-            $location.path('home');
+            getFriendsRequests();
+            getUserFriendsPreview();
         }, function(error) {
             alert('Jok');
         })
     }
 
     var rejectFriendRequest = function(requestId) {
-        authentication.rejectFriendRequest(requestId, function(data) {
+        userData.rejectFriendRequest(headers, requestId, function(data) {
             alert('Request rejected');
-            $route.reload();
+            getFriendsRequests();
+            getUserFriendsPreview();
         }, function(error) {
             alert('Jok');
         })
     }
 
     var getNewFeedPages = function() {
-        authentication.getNewFeedPages(authentication.getHeaders(), function(postsData) {
+        userData.getNewFeedPages(headers, function(postsData) {
             $scope.postsData = postsData;
 
         }, function(error) {
@@ -84,7 +88,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
     }
 
     var getFriendsRequests = function() {
-        authentication.getFriendsRequests(function(data){
+        userData.getFriendsRequests(headers, function(data){
             $scope.requestsCount = data.length;
             $scope.requestsData = data;
         }, function(error) {

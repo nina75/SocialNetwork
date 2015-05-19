@@ -21,7 +21,7 @@ app.controller('AuthenticationController', function AuthenticationController($sc
     }
 
     var logout = function() {
-        authentication.logout(authentication.getHeaders(), function (data) {
+        authentication.logout(function (data) {
             authentication.clearSessionStorage();
             alert('Logout successful');
         }, function (error) {

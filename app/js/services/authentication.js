@@ -3,9 +3,11 @@
 app.factory('authentication', function($http, BASE_URL) {
     var service = {};
 
+    var serviceUrl = BASE_URL + '/users'
+
     //authentication
     service.register = function(registerData, success, error) {
-        $http.post(BASE_URL + '/users/register', registerData)
+        $http.post(serviceUrl + '/register', registerData)
             .success(function(data) {
                 success(data);
             }).error(function(data) {
@@ -14,7 +16,7 @@ app.factory('authentication', function($http, BASE_URL) {
     }
 
     service.login = function(loginData, success, error) {
-        $http.post(BASE_URL + '/users/login', loginData)
+        $http.post(serviceUrl + '/login', loginData)
             .success(function(data) {
                 success(data);
             }).error(function(data) {
@@ -22,8 +24,8 @@ app.factory('authentication', function($http, BASE_URL) {
             })
     }
 
-    service.logout = function(headers, success, error) {
-        $http.post(BASE_URL + '/users/logout', null, {headers: headers})
+    service.logout = function(success, error) {
+        $http.post(serviceUrl + '/logout', null, {headers: this.getHeaders()})
             .success(function(data) {
                 success(data);
             }).error(function(data){
@@ -32,83 +34,7 @@ app.factory('authentication', function($http, BASE_URL) {
     }
 
     service.searchUser = function(searchTerm, success, error) {
-        $http.get(BASE_URL + '/users/search?searchTerm=' + searchTerm, {headers: this.getHeaders()})
-            .success(function(data) {
-                success(data);
-            }).error(function(data) {
-                error(data);
-            })
-    }
-
-
-    //data about me
-    service.changePassword = function(userData, headers, success, error) {
-        $http.put(BASE_URL + '/me/changepassword', userData, {headers: headers})
-            .success(function(data) {
-                success(data);
-            }).error(function(data) {
-                error(data);
-            })
-    }
-
-    service.getUserProfile = function(success, error) {
-        $http.get(BASE_URL + '/me', {headers: this.getHeaders()})
-            .success(function(data){
-                success(data);
-            })
-            .error(function(data){
-                error(data);
-            });
-    }
-
-    service.getUserFriends = function(success, error) {
-        $http.get(BASE_URL + '/me/friends', {headers: this.getHeaders()})
-            .success(function(data){
-                success(data);
-            })
-            .error(function(data){
-                error(data);
-            });
-    }
-
-    service.editProfile = function(userData, success, error) {
-        $http.put(BASE_URL + '/me', userData, {headers: this.getHeaders()})
-            .success(function(data) {
-                success(data);
-            }).error(function(data) {
-                error(data);
-            })
-    }
-
-    service.getFriendsRequests = function(success, error) {
-        $http.get(BASE_URL + '/me/requests', {headers:this.getHeaders()})
-            .success(function(data) {
-                success(data);
-            }).error(function(data) {
-                error(data);
-            })
-    }
-
-    service.approveFriendRequest = function(requestId, success, error) {
-        $http.put(BASE_URL + '/me/requests/' +requestId+ '?status=approved', null, {headers:this.getHeaders()})
-            .success(function(data) {
-                success(data);
-            }).error(function(data) {
-                error(data);
-            })
-    }
-
-    service.rejectFriendRequest = function(requestId, success, error) {
-        $http.put(BASE_URL + '/me/requests/' + requestId + '?status=rejected', null, {headers:this.getHeaders()})
-            .success(function(data) {
-                success(data);
-            }).error(function(data) {
-                error(data);
-            })
-    }
-
-    service.getNewFeedPages = function(headers, success, error) {
-        $http.get(BASE_URL + '/me/feed?StartPostId=&PageSize=5', {headers:headers})
+        $http.get(serviceUrl + '/search?searchTerm=' + searchTerm, {headers: this.getHeaders()})
             .success(function(data) {
                 success(data);
             }).error(function(data) {

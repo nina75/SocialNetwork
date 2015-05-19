@@ -1,13 +1,10 @@
 'use strict';
 
-app.controller('PostsController', function PostsController($scope, posts) {
-    var headers = {
-        Authorization: "Bearer " + sessionStorage['accessToken']
-    }
+app.controller('PostsController', function PostsController($scope, posts, authentication) {
 
-    $scope.likeUnlikePost = function(post) {
+    var likeUnlikePost = function(post) {
         if(!post.liked) {
-            posts.likePost(post.id, headers, function(data) {
+            posts.likePost(post.id, authentication.getHeaders(), function(data) {
                 post.likesCount++;
                 post.liked = true;
 
@@ -15,7 +12,7 @@ app.controller('PostsController', function PostsController($scope, posts) {
                 alert('LikeUnlike йок');
             })
         } else {
-            posts.unlikePost(post.id, headers, function(data) {
+            posts.unlikePost(post.id, authentication.getHeaders(), function(data) {
 
                 post.likesCount--;
                 post.liked = false;
@@ -26,15 +23,17 @@ app.controller('PostsController', function PostsController($scope, posts) {
         }
     }
 
-    $scope.showComments = false;
-    
-
-    $scope.commentPost = function(post) {
+    var commentPost = function(post) {
         $scope.commentContent = 'MAsaasa';
-        posts.commentPost(post.id, $scope.commentData, headers, function(data) {
+        posts.commentPost(post.id, $scope.commentData, authentication.getHeaders(), function(data) {
             alert('Ok');
         }, function(error) {
             alert('Tz');
         })
     }
+
+    $scope.showComments = false;
+
+    $scope.likeUnlikePost = likeUnlikePost;
+    $scope.commentPost = commentPost;
 })
