@@ -1,55 +1,37 @@
 <div ng-include="'partials/header.html'"></div>
 
-<div ng-controller="PostsController">
-    <ul>
-        <li ng-repeat="post in postsData" style="border:1px solid pink">
-            <p>Author
-                <img src="" data-ng-src="{{post.author.profileImageData}}" alt="{{post.author.username}}" style="width:30px;height:30px" />
-                {{post.author.username}}{{post.author.name}}
-            </p>
-            <p>
-                WallOwner<img src="" style="width:30px;height:30px" data-ng-src="{{post.wallOwner.profileImageData}}" />
-                {{post.wallOwner.name}}
-            </p>
-            <p>{{post.postContent}}</p>
-            <p>{{post.date}}</p>
-            <p>
-                <span>Likes:{{post.likesCount}}</span>
-                <span>Liked:{{post.liked}}</span>
-                <span>Comments:{{post.totalCommentsCount}}</span>
-                <!--<button ng-click="showComments(post)">View comments</button>-->
-                <!--<div ng-show="showComments">-->
-                    <!--<ul>-->
-                        <!--<li ng-repeat="comment in post.comments">{{comment.commentContent}}</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-
-
-                <button ng-click="likeUnlikePost(post)">{{post.liked | likeStatus}}</button>
-            </p>
-        </li>
-    </ul>
-</div>
-
 <div>
-    <ul>
-        <span>Friends: {{friendsCount}}</span>
-        <li ng-repeat="friend in friendsData | filter: search">
-            <img src="" data-ng-src="{{friend.profileImageData}}" alt="{{friend.username}}" style="width:30px;height:30px"/>
-            <p>
-                Username:{{friend.username}}
-            </p>
-            <p>
-                <a href="#/user/{{friend.username}}">Name: {{friend.name}}</a>
-            </p>
-            <p>
-                Gender: {{friend.gender}}
-            </p>
-            <hr/>
-        </li>
-    </ul>
+    <div>
+        <ul>
+            <li ng-repeat="post in postsData" style="border:1px solid pink">
+                <div post-details post="post" />
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <ul> <!--username, name, gender, profileImageData, id-->
+            <a href="#/user/me/friends">Friends</a>
+            <span>{{friendsCount}}</span>
+            <li ng-repeat="friend in friendsPreviewData.friends | limitTo: 6">
+                <img src="" ng-src="{{friend.profileImageData || 'img/anonymous.jpg'}}" alt="{{friend.username}}" style="width:30px;height:30px"/>
+                <p>
+                    Username:{{friend.username}}
+                </p>
+                <p>
+                    <a href="#/user/{{friend.username}}">Name: {{friend.name}}</a>
+                </p>
+                <p>
+                    Gender: {{friend.gender}}
+                </p>
+                <hr/>
+            </li>
+        </ul>
+    </div>
+    <hr/>
+
 </div>
-Friend requests:{{requestsCount}}
-<hr/>
+
+
 
 

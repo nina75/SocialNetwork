@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PostsController', function PostsController($scope, posts, authentication) {
+app.controller('PostsController', function PostsController($scope, posts, authentication, notifyService) {
 
     //home - like, unlike post
     var likeUnlikePost = function(post) {
@@ -24,18 +24,5 @@ app.controller('PostsController', function PostsController($scope, posts, authen
         }
     }
 
-    //
-    var commentPost = function(post) {
-        $scope.commentContent = 'MAsaasa';
-        posts.commentPost(post.id, $scope.commentData, authentication.getHeaders(), function(data) {
-            alert('Ok');
-        }, function(error) {
-            alert('Tz');
-        })
-    }
-
-    $scope.showComments = false;
-
     $scope.likeUnlikePost = likeUnlikePost;
-    $scope.commentPost = commentPost;
 })

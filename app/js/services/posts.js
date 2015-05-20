@@ -27,12 +27,17 @@ app.factory('posts', function($http, BASE_URL) {
 
     //add comments to post
     service.commentPost = function(postId, commentData, headers, success, error) {
-        $http.post(serviceUrl + '/' + postId + '/comments', commentData, {headers:headers})
+        $http.post(BASE_URL + '/posts/' + postId + '/comments', commentData, {headers:headers})
             .success(function(data) {
                 success(data);
             }).error(function(data) {
                 error(data);
             })
+    }
+
+    //get post comments
+    service.getPostComments = function() {
+        $http.get('http://softuni-social-network.azurewebsites.net/api/posts/170/comments')
     }
 
     return service;

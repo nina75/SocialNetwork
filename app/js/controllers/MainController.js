@@ -38,7 +38,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
         userData.approveFriendRequest(headers, requestId, function(data) {
             alert('Request accepted');
             getFriendsRequests();
-            getUserFriends();
+            getOwnFriendsPreview();
         }, function(error) {
             alert('Jok');
         })
@@ -48,7 +48,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
         userData.rejectFriendRequest(headers, requestId, function(data) {
             alert('Request rejected');
             getFriendsRequests();
-            getUserFriends();
+            getOwnFriendsPreview();
         }, function(error) {
             alert('Jok');
         })
@@ -108,12 +108,12 @@ app.controller('MainController', function MainController($scope, $location, $rou
     }
 
     //home section - friends
-    var getUserFriends = function() {
-        userData.getUserFriends(headers, function(data) {
-            $scope.friendsCount = data.length;
-            $scope.friendsData = data;
+    var getOwnFriendsPreview = function() {
+        userData.getOwnFriendsPreview(headers, function(data) {
+            $scope.friendsPreviewData = data;
+            $scope.friendsCount = data.totalCount;
         }, function(error) {
-            console.log(error);
+            alert('Error');
         })
     }
 
@@ -129,11 +129,10 @@ app.controller('MainController', function MainController($scope, $location, $rou
     $scope.logout = logout;
     $scope.searchUser = searchUser;
     $scope.hideFoundUsers = hideFoundUsers;
-    $scope.getUserFriends = getUserFriends;
 
     if ($scope.username) {
         getUserProfile();
-        getUserFriends();
+        getOwnFriendsPreview();
         getNewFeedPages();
         getFriendsRequests();
     }

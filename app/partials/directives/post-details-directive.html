@@ -1,0 +1,39 @@
+<p>Author
+    <img src="" data-ng-src="{{post.author.profileImageData}}" alt="{{post.author.username}}" style="width:30px;height:30px" />
+    {{post.author.username}}{{post.author.name}}
+</p>
+<p>
+    WallOwner<img src="" style="width:30px;height:30px" data-ng-src="{{post.wallOwner.profileImageData}}" />
+    {{post.wallOwner.name}}
+</p>
+<p>{{post.postContent}}</p>
+<p>{{post.date}}</p>
+<p ng-controller="PostsController">
+    <span>Likes:{{post.likesCount}}</span>
+    <button ng-click="likeUnlikePost(post)">{{post.liked | likeStatus}}</button>
+
+    <span>{{post.totalCommentsCount}}</span>Comments
+
+    <div ng-controller="CommentsController">
+
+        <button ng-click="getPostComments(post.id)">Comments</button>
+
+        <input type="text" placeholder="Add comment" ng-model="commentContent"/>
+        <button type="submit" ng-click="commentPost(post.id)">Send comment</button>
+
+        <!--<div ng-mousedown="showComments=!showComments" ng-init="showComments=false">Comments </div>-->
+
+    <!--Тва ако е тука, не бачка???-->
+        <!--<input type="text" placeholder="Add comment" ng-model="commentContent"/>-->
+        <!--<button type="submit" ng-click="commentPost(post.id)">Send comment</button>-->
+
+
+        <div ng-show="showComments">
+            <ul>
+                <li ng-repeat="comment in commentsData | limitTo:3">{{comment.commentContent}}</li>
+            </ul>
+        </div>
+    </div>
+
+
+</p>

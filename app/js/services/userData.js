@@ -87,6 +87,17 @@ app.factory('userData', function($http, BASE_URL) {
             });
     }
 
+    //get own friends preview
+    service.getOwnFriendsPreview = function(headers, success, error) {
+        $http.get(serviceUrl + '/friends/preview', {headers: headers})
+            .success(function(data){
+                success(data);
+            })
+            .error(function(data){
+                error(data);
+            });
+    }
+
     //send friend request
     service.sendFriendRequest = function(userData, headers, success, error) {
         $http.post(serviceUrl + '/requests/' + userData, null, {headers:headers})

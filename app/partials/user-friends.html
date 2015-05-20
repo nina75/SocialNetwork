@@ -1,0 +1,19 @@
+<div ng-include="'partials/header.html'"></div>
+
+<ul> <!--username, name, gender, profileImageData, id-->
+    {{name}} friends {{friendsCount}} total
+
+    <li ng-repeat="friend in friendsPreviewData.friends">
+        <img src="" ng-src="{{friend.profileImageData || 'img/anonymous.jpg'}}" alt="{{friend.username}}" style="width:30px;height:30px"/>
+        <p>
+            Username:{{friend.username}}
+        </p>
+        <p>
+            <a href="#/user/{{friend.username}}">Name: {{friend.name}}</a>
+        </p>
+        <p>
+            Gender: {{friend.gender}}
+        </p>
+        <hr/>
+    </li>
+</ul>
