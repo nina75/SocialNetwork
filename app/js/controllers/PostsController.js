@@ -2,6 +2,8 @@
 
 app.controller('PostsController', function PostsController($scope, posts, authentication, notifyService) {
 
+    var headers = authentication.getHeaders();
+
     //home - like, unlike post
     var likeUnlikePost = function(post) {
         if(!post.liked) {
@@ -14,15 +16,22 @@ app.controller('PostsController', function PostsController($scope, posts, authen
             })
         } else {
             posts.unlikePost(post.id, authentication.getHeaders(), function(data) {
-
                 post.likesCount--;
                 post.liked = false;
-
             }, function(error) {
                 alert('LikeUnlike йок');
             })
         }
     }
 
+    var getPostById = function(postId) {
+        posts.getPostById(postId, headers, function(data) {
+            alert('Взе поста бай ID');
+        }, function(error) {
+            alert('Tz');
+        })
+    }
+
     $scope.likeUnlikePost = likeUnlikePost;
+
 })

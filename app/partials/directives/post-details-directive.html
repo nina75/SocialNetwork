@@ -29,10 +29,17 @@
 
 
         <div ng-show="showComments">
-            <ul>
-                <li ng-repeat="comment in commentsData | limitTo:3">{{comment.commentContent}}</li>
+            <ul ng-hide="showAllComments">
+                <li ng-repeat="comment in commentsData | orderBy: date | limitTo:3">{{comment.commentContent}}</li>
             </ul>
+            <div ng-hide="showAllComments" ng-mousedown="showAllComments=!showAllComments" ng-init="false">Get all comments</div>
+            <div ng-show="showAllComments">
+                <ul>
+                    <li ng-repeat="comment in commentsData | orderBy: date">{{comment.commentContent}}</li>
+                </ul>
+            </div>
         </div>
+
     </div>
 
 

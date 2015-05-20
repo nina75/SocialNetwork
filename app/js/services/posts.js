@@ -35,9 +35,14 @@ app.factory('posts', function($http, BASE_URL) {
             })
     }
 
-    //get post comments
-    service.getPostComments = function() {
-        $http.get('http://softuni-social-network.azurewebsites.net/api/posts/170/comments')
+    //get post by id
+    service.getPostById = function(postId, headers, success, error) {
+        $http.get(serviceUrl + '/' + postId, {headers: headers})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
     }
 
     return service;

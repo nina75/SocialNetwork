@@ -17,14 +17,22 @@ app.controller('CommentsController', function CommentsController($scope, authent
     //home - get comments for post
     var getPostComments = function(postId) {
         comments.getPostComments(postId, headers, function(data) {
-            $scope.commentsCount = data.length;
-            $scope.commentsData = data;
-            $scope.showComments = true;
+            if(data.length > 0) {
+                $scope.commentsCount = data.length;
+                $scope.commentsData = data;
+                $scope.showComments = !$scope.showComments;
+            }
         }, function(error) {
             alert('Tz');
         })
     }
 
+    var hideComments = function(){
+        $scope.showAllComment = false;
+    }
+
+    $scope.showAllComment = false;
+    $scope.hideComments = hideComments;
     $scope.commentPost = commentPost;
     $scope.getPostComments = getPostComments;
 })
