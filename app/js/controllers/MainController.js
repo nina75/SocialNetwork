@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MainController', function MainController($scope, $location, $route, authentication, userData, friendsData) {
+app.controller('MainController', function MainController($scope, $location, $route, authentication, userData, notifyService) {
 
     var headers = authentication.getHeaders();
 
@@ -9,7 +9,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
         userData.getUserProfile(headers, function(data) {
             $scope.userData = data;
         }, function(error) {
-            alert('Unsuccessful get user data');
+            notifyService.showError("Unsuccessful Connection to Database!")
         })
     }
 
@@ -38,7 +38,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
         userData.approveFriendRequest(headers, requestId, function(data) {
             alert('Request accepted');
             getFriendsRequests();
-            getUserFriendsPreview();
+            getUserFriends();
         }, function(error) {
             alert('Jok');
         })
@@ -48,7 +48,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
         userData.rejectFriendRequest(headers, requestId, function(data) {
             alert('Request rejected');
             getFriendsRequests();
-            getUserFriendsPreview();
+            getUserFriends();
         }, function(error) {
             alert('Jok');
         })

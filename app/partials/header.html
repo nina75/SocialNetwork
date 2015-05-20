@@ -35,10 +35,9 @@
     </form>
 
     <div ng-show="showFoundUsers" style="position: absolute">
-        <ul>
+        <ul style="z-index: 2">
             <li ng-repeat="user in foundUsers">
-                <a href="">
-                    {{user.name}}
+                <a href="#/user/{{user.username}}">{{user.name}}
                     <img src="" data-ng-src="data:image/png;base64,{{user.profileImageData}}" alt="{{user.username}}" style="width:30px;height:30px"/>
                 </a>
             </li>

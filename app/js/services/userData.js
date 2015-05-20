@@ -87,5 +87,16 @@ app.factory('userData', function($http, BASE_URL) {
             });
     }
 
+    //send friend request
+    service.sendFriendRequest = function(userData, headers, success, error) {
+        $http.post(serviceUrl + '/requests/' + userData, null, {headers:headers})
+            .success(function(data){
+                success(data);
+            })
+            .error(function(data){
+                error(data);
+            });
+    }
+
     return service;
 })
