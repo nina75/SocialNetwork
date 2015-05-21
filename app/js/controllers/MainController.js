@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MainController', function MainController($scope, $location, $route, authentication, userData, notifyService) {
+app.controller('MainController', function MainController($scope, $location, $route, authentication, userData, posts, notifyService) {
 
     var headers = authentication.getHeaders();
 
@@ -117,6 +117,26 @@ app.controller('MainController', function MainController($scope, $location, $rou
         })
     }
 
+    //delete post
+    var deletePost = function(postId) {
+        posts.deletePost(postId, headers, function(data) {
+            alert('Stana');
+            getNewFeedPages();
+        }, function(error) {
+            alert('Tz');
+        })
+    }
+    
+    //edit post
+    var editPost = function(postId, postContent) {
+        posts.editPost(postId, {postContent: postContent}, headers, function(data) {
+            alert('Stana');
+            getNewFeedPages();
+        }, function(error) {
+            alert('Tz');
+        })
+    }
+
     $scope.username = sessionStorage['username'];
     $scope.showFoundUsers = false;
     $scope.likeButtonText = $scope.liked ? 'Unlike' : 'Like';
@@ -129,12 +149,18 @@ app.controller('MainController', function MainController($scope, $location, $rou
     $scope.logout = logout;
     $scope.searchUser = searchUser;
     $scope.hideFoundUsers = hideFoundUsers;
+    $scope.deletePost = deletePost;
+    $scope.editPost = editPost;
 
     if ($scope.username) {
         getUserProfile();
         getOwnFriendsPreview();
         getNewFeedPages();
         getFriendsRequests();
+    }
+    
+    $scope.proba = function() {
+        alert('Ovca');
     }
 
 });

@@ -8,6 +8,8 @@
 </p>
 <p>{{post.postContent}}</p>
 <p>{{post.date}}</p>
+
+
 <p ng-controller="PostsController">
     <span>Likes:{{post.likesCount}}</span>
     <button ng-click="likeUnlikePost(post)">{{post.liked | likeStatus}}</button>

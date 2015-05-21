@@ -4,7 +4,17 @@
     <div>
         <ul>
             <li ng-repeat="post in postsData" style="border:1px solid pink">
+                <div ng-show="true">
+                    <button ng-click="deletePost(post.id)">Delete post</button>
+                    <button ng-click="editPost(post.id)">Edit post</button>
+                </div>
+                <div ng-show="true">
+                    <input type="text" placeholder="New content" ng-model="post.postContent"/>
+                    <button ng-click="editPost(post.id, post.postContent)">Edit</button>
+                </div>
+
                 <div post-details post="post" />
+
             </li>
         </ul>
     </div>
@@ -14,17 +24,7 @@
             <a href="#/user/me/friends">Friends</a>
             <span>{{friendsCount}}</span>
             <li ng-repeat="friend in friendsPreviewData.friends | limitTo: 6">
-                <img src="" ng-src="{{friend.profileImageData || 'img/anonymous.jpg'}}" alt="{{friend.username}}" style="width:30px;height:30px"/>
-                <p>
-                    Username:{{friend.username}}
-                </p>
-                <p>
-                    <a href="#/user/{{friend.username}}">Name: {{friend.name}}</a>
-                </p>
-                <p>
-                    Gender: {{friend.gender}}
-                </p>
-                <hr/>
+                <div friend-details friend="friend" />
             </li>
         </ul>
     </div>
