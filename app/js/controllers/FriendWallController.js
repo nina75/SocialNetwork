@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('FriendWallController', function FriendWallController($scope, $location, $routeParams, authentication, userData, friendsData) {
+app.controller('FriendWallController', function FriendWallController($scope, $location, $routeParams, authentication, posts, userData, friendsData) {
 
     var headers = authentication.getHeaders();
     var username = $routeParams.username;
@@ -43,7 +43,17 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
         })
     }
 
+    var addNewPost = function(username) {
+        posts.addNewPost(headers, {postContent: $scope.postContent,username: username}, function(data) {
+            getUserPosts(username);
+            alert('Stana');
+        }, function(error) {
+            alert('error');
+        })
+    }
+
     $scope.sendFriendRequest = sendFriendRequest;
+    $scope.addNewPost = addNewPost;
 
     getUserFullData(username);
     getUserPosts(username);

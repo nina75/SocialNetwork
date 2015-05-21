@@ -21,18 +21,22 @@
     <div>
         <ul>
             <li ng-repeat="post in userPostsData">
-                <p>{{post.postContent}}</p>
-                <p>by: {{post.author.username}}</p>
+                <div post-details post="post" />
             </li>
         </ul>
     </div>
 
     <div>
+        <form ng-submit="addNewPost(userFullData.username)">
+            <input type="text" placeholder="Post content" ng-model="postContent"/>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <div>
         <ul>
             <li ng-repeat="friend in friendsDetailedList">
-                <p>{{friend.username}}
-                    <img src="" ng-src="{{friend.profileImageData}}" alt="" style="width:30px;height: 30px">
-                </p>
+                <div friend-details friend="friend" />
             </li>
         </ul>
     </div>

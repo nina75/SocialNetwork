@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PostsController', function PostsController($scope, posts, authentication, notifyService) {
+app.controller('PostsController', function PostsController($scope, $location,posts, authentication, notifyService) {
 
     var headers = authentication.getHeaders();
 
@@ -26,11 +26,14 @@ app.controller('PostsController', function PostsController($scope, posts, authen
 
     var getPostById = function(postId) {
         posts.getPostById(postId, headers, function(data) {
+            console.log()
             alert('Взе поста бай ID');
         }, function(error) {
             alert('Tz');
         })
     }
+
+
 
     $scope.likeUnlikePost = likeUnlikePost;
 

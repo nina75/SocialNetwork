@@ -17,18 +17,10 @@
     <ul> <!--username, name, gender, profileImageData, id-->
         <a href="#/user/me/friends">Friends</a>
         <span>{{friendsCount}}</span>
+
         <li ng-repeat="friend in friendsPreviewData.friends | limitTo: 6">
-            <img src="" ng-src="{{friend.profileImageData || 'img/anonymous.jpg'}}" alt="{{friend.username}}" style="width:30px;height:30px"/>
-            <p>
-                Username:{{friend.username}}
-            </p>
-            <p>
-                <a href="#/user/{{friend.username}}">Name: {{friend.name}}</a>
-            </p>
-            <p>
-                Gender: {{friend.gender}}
-            </p>
-            <hr/>
+            {{friend.name}}
+            <div friend-details friend="friend" />
         </li>
     </ul>
 </div>
@@ -37,8 +29,7 @@
     <div>
         <ul>
             <li ng-repeat="post in userPostsData">
-                <p>{{post.postContent}}</p>
-                <p>by: {{post.author.username}}</p>
+                <div post-details post="post" />
             </li>
         </ul>
     </div>
