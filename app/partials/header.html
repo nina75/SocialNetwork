@@ -1,29 +1,37 @@
-<header>
+<header class="main-header">
+    <div>
+        <a href="#/home" class="header-link">
+            <span>News feed</span>
+            <img class="icon" src="img/news-feed.png" width="30px" height="30px" alt=""/>
+        </a>
+    </div>
+    <div>
+        <a href="#/home" class="header-link">
+            <span>Requests</span>
+            <img class="icon" src="img/requests.png" width="30px" height="30px" alt=""/>
+            <span class="request-count" ng-mousedown="showRequests = !showRequests" ng-init="showRequests=false">{{requestsCount}}</span>
+        </a>
+        <div ng-show="showRequests" style="position:absolute;background-color: white" >
+            {{requestsCount}} results total
+            <ul>
+                <li ng-repeat="request in requestsData">
+                    {{request.user.name}}
+                    <img src="" data-ng-src="data:image/png;base64,{{request.user.profileImageData}}" alt="{{request.user.username}}" style="width:30px;height:30px"/>
+                    <button ng-click="approveFriendRequest(request.id)">Accept</button>
+                    <button ng-click="rejectFriendRequest(request.id)">Reject</button>
+                </li>
+            </ul>
+            {{requestsData}}
+        </div>
+    </div>
+
+
     <div>
         <a href="#/user/me" ng-bind="userData.name"></a>
         <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="{{userData.username}}" style="width:30px;height:30px"/>
     </div>
-    <div>
-        <a href="#/home">Home</a>
-    </div>
-
-    <span>Friend requests:{{requestsCount}}</span>
-
-    <div ng-mousedown="showRequests = !showRequests" ng-init="showRequests=false">Request</div>
 
 
-    <div ng-show="showRequests" style="position:absolute;background-color: white" >
-        {{requestsCount}} results total
-        <ul>
-            <li ng-repeat="request in requestsData">
-                {{request.user.name}}
-                <img src="" data-ng-src="data:image/png;base64,{{request.user.profileImageData}}" alt="{{request.user.username}}" style="width:30px;height:30px"/>
-                <button ng-click="approveFriendRequest(request.id)">Accept</button>
-                <button ng-click="rejectFriendRequest(request.id)">Reject</button>
-            </li>
-        </ul>
-        {{requestsData}}
-    </div>
 
     <a href="#/profile">Edit profile</a>
     <a href="#/changepassword">Change password</a>
