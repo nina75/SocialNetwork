@@ -9,16 +9,8 @@ app.config(function ($routeProvider,$locationProvider) {
 
     $routeProvider
         .when('/', {
-            templateUrl:'partials/initial.html'
-        })
-        .when('/login', {
-            templateUrl:'partials/login.html',
+            templateUrl:'partials/initial.html',
             controller:'AuthenticationController'
-        })
-        .when('/register', {
-            templateUrl:'partials/register.html',
-            controller:'AuthenticationController'
-
         })
         .when('/home', {
             templateUrl:'partials/home.html',

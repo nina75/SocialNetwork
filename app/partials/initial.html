@@ -1,3 +1,53 @@
-<h1>Welcome to Фейс ЧУК!</h1>
-<a href="#/register">Register</a>
-<a href="#/login">Login</a>
+<header class="initial-header clearfix" >
+    <div class="initial-logo-container">
+        <a href="#/"><img src="img/logo-large.png" alt=""/></a>
+    </div>
+    <div class="login-form-container">
+        <form name="loginForm" ng-submit="login()">
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" ng-model="loginData.username"/>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" ng-model="loginData.password"/>
+            </div>
+            <div>
+                <button type="submit">Log In</button>
+            </div>
+        </form>
+    </div>
+</header>
+<div class="main-container clearfix" style="border:1px solid pink">
+    <section class="intro-container" style="border:1px solid pink">
+        <h1>Find friends with the same mental disorders as you on FaceЧук.</h1>
+        <div>dadada</div>
+    </section>
+    <section class="reg-form-container" style="border:1px solid pink">
+        <h2>Sign Up</h2>
+        <form name="registerForm" ng-submit="register()">
+            <input type="text" placeholder="Username" ng-model="registerData.username"/>
+            <input type="password" placeholder="Password" ng-model="registerData.password"/>
+            <input type="password" placeholder="Confirm password" ng-model="registerData.confirmPassword"/>
+            <input type="text" placeholder="Name" ng-model="registerData.name"/>
+            <input type="text" placeholder="Email" ng-model="registerData.email"/>
+            <div class="radio-button-container">
+                <div>
+                    <input type="radio" id="male" name="gender" value="0" ng-model="registerData.gender"/>
+                    <label for="male">Male</label>
+                </div>
+                <div>
+                    <input type="radio" id="female" name="gender" value="1" ng-model="registerData.gender"/>
+                    <label for="female">Female</label>
+                </div>
+                <div>
+                    <input type="radio" id="other" name="gender" value="2" ng-model="registerData.gender"/>
+                    <label for="other">Other</label>
+                </div>
+            </div>
+            <div>
+                <button class="sign-up-button" type="submit">Sign Up</button>
+            </div>
+        </form>
+    </section>
+</div>
