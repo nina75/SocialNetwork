@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('UserWallController', function UserWallController($scope, authentication, friendsData) {
+app.controller('UserWallController', function UserWallController($scope, authentication, friendsData, notifyService) {
 
     var headers = authentication.getHeaders();
     var username = sessionStorage['username'];
@@ -9,7 +9,7 @@ app.controller('UserWallController', function UserWallController($scope, authent
         friendsData.getUserWall(headers, username, function(data) {
             $scope.userPostsData = data;
         }, function(error) {
-            alert('Tz');
+            notifyService.showError("Unsuccessful Connection to Database!");
         })
     }
 

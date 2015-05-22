@@ -19,7 +19,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             $scope.postsData = postsData;
 
         }, function(error) {
-            alert('Йок');
+            notifyService.showError("Unsuccessful Connection to Database!")
         })
 
     }
@@ -31,7 +31,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             $scope.showRequestsCount = $scope.requestsCount > 0 ? true : false;
             $scope.requestsData = data;
         }, function(error) {
-            console.log(error);
+            notifyService.showError("Unsuccessful Connection to Database!")
         })
     }
     console.log($scope.requestsCount);
@@ -43,17 +43,17 @@ app.controller('MainController', function MainController($scope, $location, $rou
             getFriendsRequests();
             getOwnFriendsPreview();
         }, function(error) {
-            alert('Jok');
+            notifyService.showError("Unsuccessful Connection to Database!")
         })
     }
 
     var rejectFriendRequest = function(requestId) {
         userData.rejectFriendRequest(headers, requestId, function(data) {
-            alert('Request rejected');
+            notifyService.showInfo("Request accepted")
             getFriendsRequests();
             getOwnFriendsPreview();
         }, function(error) {
-            alert('Jok');
+            notifyService.showError("Unsuccessful Connection to Database!");
         })
     }
 
@@ -70,7 +70,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             alert('Successful edit');
             $location.path('home');
         }, function(error) {
-            alert('Edit unsuccessful');
+            notifyService.showError("Unsuccessful Connection to Database!");
         })
     }
 
@@ -78,10 +78,10 @@ app.controller('MainController', function MainController($scope, $location, $rou
     var changePassword = function() {
         userData.changePassword($scope.userData, headers, function(data){
             authentication.clearSessionStorage();
-            alert('Password changed');
+            notifyService.showInfo("Password changed!")
             $location.path('login');
         }, function(error) {
-            alert('Йок');
+            notifyService.showError("Unsuccessful Connection to Database!")
         })
     }
 
@@ -92,7 +92,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             $scope.foundUsers = data;
             $scope.showFoundUsers = true;
         }, function(error) {
-            console.log(error);
+            notifyService.showError("Unsuccessful Connection to Database!");
         })
     }
 
@@ -100,9 +100,9 @@ app.controller('MainController', function MainController($scope, $location, $rou
     var logout = function() {
         authentication.logout(function (data) {
             authentication.clearSessionStorage();
-            alert('Logout successful');
+            notifyService.showInfo("Successfully logout")
         }, function (error) {
-            console.log(error);
+            notifyService.showError("Unsuccessful Connection to Database!");
         })
     }
 
@@ -116,27 +116,27 @@ app.controller('MainController', function MainController($scope, $location, $rou
             $scope.friendsPreviewData = data;
             $scope.friendsCount = data.totalCount;
         }, function(error) {
-            alert('Error');
+            notifyService.showError("Unsuccessful Connection to Database!");
         })
     }
 
     //delete post
     var deletePost = function(postId) {
         posts.deletePost(postId, headers, function(data) {
-            alert('Stana');
+            notifyService.showInfo("Post deleted");
             getNewFeedPages();
         }, function(error) {
-            alert('Tz');
+            notifyService.showError("Unsuccessful Connection to Database!");
         })
     }
     
     //edit post
     var editPost = function(postId, postContent) {
         posts.editPost(postId, {postContent: postContent}, headers, function(data) {
-            alert('Stana');
+            notifyService.showInfo("Successful edit post");
             getNewFeedPages();
         }, function(error) {
-            alert('Tz');
+            notifyService.showError("Unsuccessful Connection to Database!");
         })
     }
 

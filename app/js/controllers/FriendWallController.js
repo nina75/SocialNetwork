@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('FriendWallController', function FriendWallController($scope, $location, $routeParams, authentication, posts, userData, friendsData) {
+app.controller('FriendWallController', function FriendWallController($scope, $location, $routeParams, authentication, posts, userData, friendsData, notifyService) {
 
     var headers = authentication.getHeaders();
     var username = $routeParams.username;
@@ -14,7 +14,7 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
             }
             $scope.userFullData = data;
         }, function(error) {
-            alert('Error');
+            notifyService.showError('Unsuccessful Connect To Database');
         })
     }
 
@@ -22,7 +22,7 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
         friendsData.getUserWall(headers, username, function(data) {
             $scope.userPostsData = data;
         }, function(error) {
-            alert('Tz');
+            notifyService.showError('Unsuccessful Connect To Database');
         })
     }
 
@@ -30,7 +30,7 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
         friendsData.getFriendsDetailedFriendsList(headers, username, function(data) {
             $scope.friendsDetailedList = data;
         }, function(error) {
-            alert('Tz');
+            notifyService.showError('Unsuccessful Connect To Database');
         })
     }
 
@@ -39,16 +39,15 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
             $scope.showInvite = false;
             $scope.showPendingRequest = true;
         }, function(error) {
-            alert('Tz');
+            notifyService.showError('Unsuccessful Connect To Database');
         })
     }
 
     var addNewPost = function(username) {
         posts.addNewPost(headers, {postContent: $scope.postContent,username: username}, function(data) {
             getUserPosts(username);
-            alert('Stana');
         }, function(error) {
-            alert('error');
+            notifyService.showError('Unsuccessful Connect To Database');
         })
     }
 

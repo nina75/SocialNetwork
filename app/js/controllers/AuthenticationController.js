@@ -8,7 +8,7 @@ app.controller('AuthenticationController', function AuthenticationController($sc
             authentication.setSessionStorage(data);
             $location.path('home');
         }, function(error) {
-            notifyService.showError('Регистрация йок!');
+            notifyService.showError('Unsuccessful Connect To Database');
         })
     }
 
@@ -18,7 +18,7 @@ app.controller('AuthenticationController', function AuthenticationController($sc
             authentication.setSessionStorage(data);
             $location.path('home');
         }, function(error) {
-            alert('Login failed');
+            notifyService.showError('Unsuccessful Connect To Database');
         })
     }
 

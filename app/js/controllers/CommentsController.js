@@ -7,10 +7,9 @@ app.controller('CommentsController', function CommentsController($scope, authent
    //home - comment post
     var commentPost = function(postId) {
         comments.commentPost(postId, {commentContent: $scope.commentContent}, authentication.getHeaders(), function(data) {
-            alert('Stana');
             getPostComments(postId);
         }, function(error) {
-            alert('Tz');
+            notifyService.showError('Unsuccessful Connect To Database');
         })
     }
 
@@ -23,7 +22,7 @@ app.controller('CommentsController', function CommentsController($scope, authent
                 $scope.showComments = !$scope.showComments;
             }
         }, function(error) {
-            alert('Tz');
+            notifyService.showError('Unsuccessful Connect To Database');
         })
     }
 

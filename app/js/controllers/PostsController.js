@@ -12,28 +12,25 @@ app.controller('PostsController', function PostsController($scope, $location,pos
                 post.liked = true;
 
             }, function(error) {
-                alert('LikeUnlike йок');
+                notifyService.showError("Unsuccessful Connection to Database!");
             })
         } else {
             posts.unlikePost(post.id, authentication.getHeaders(), function(data) {
                 post.likesCount--;
                 post.liked = false;
             }, function(error) {
-                alert('LikeUnlike йок');
+                notifyService.showError("Unsuccessful Connection to Database!");
             })
         }
     }
 
     var getPostById = function(postId) {
         posts.getPostById(postId, headers, function(data) {
-            console.log()
-            alert('Взе поста бай ID');
+
         }, function(error) {
-            alert('Tz');
+            notifyService.showError("Unsuccessful Connection to Database!");
         })
     }
-
-
 
     $scope.likeUnlikePost = likeUnlikePost;
 
