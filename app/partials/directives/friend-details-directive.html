@@ -1,11 +1,7 @@
-<img src="" ng-src="{{friend.profileImageData || 'img/anonymous.jpg'}}" alt="{{friend.username}}" style="width:30px;height:30px"/>
 <p>
-    Username:{{friend.username}}
+    <a href="#/user/{{friend.username}}" style="color:#3675B5">
+        <img src="" ng-src="{{friend.profileImageData || 'img/anonymous.jpg'}}" alt="{{friend.username}}" width="50" height="50"/>
+        {{friend.name}}
+        <img src="" ng-src="{{friend.gender | genderIcon}}" alt="" width="30" height="25"/>
+    </a>
 </p>
-<p>
-    <a href="#/user/{{friend.username}}">Name: {{friend.name}}</a>
-</p>
-<p>
-    Gender: {{friend.gender}}
-</p>
-<hr/>

@@ -1,52 +1,74 @@
 <div ng-include="'partials/header.html'"></div>
 
+<div class="main-container">
+    <form name="registerForm" ng-submit="editProfile()">
+        <div class="selected-images-container clearfix">
+            <div class="profile-image-container">
+                <span>Profile picture</span>
+                    <img src="" ng-src="{{userData.profileImageData || 'img/anonymous.jpg'}}" base-sixty-four-image="profileImage" alt="Profile image" />
+                    <!--<img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData || 'img/anonymous.jpg'}}" base-sixty-four-image="profileImage" alt="Profile image" />-->
+                    <input id="profile-img" style="display: none" type="file" ng-model="profileImage" name="file" base-sixty-four-input >
+                    <label class="select-image" for="profile-img">Select Image</label>
+            </div>
+            <div class="cover-image-container">
+                <span>Cover picture</span>
+                    <img src="" ng-src="{{userData.coverImageData || 'img/default-cover.png'}}" base-sixty-four-image="coverImage" alt="Cover image" />
+                    <!--<img src="" data-ng-src="data:image/png;base64,{{userData.coverImageData || 'img/default-cover.png'}}" base-sixty-four-image="coverImage" alt="Cover image" />-->
+                    <input id="cover-img" style="display: none" type="file" ng-model="coverImage" name="file" base-sixty-four-input>
+                    <label class="select-image" for="cover-img">Select Image</label>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="other-info-container">
+                <div>
+                    <div style="display: block">
+                        <label for="user-data-name">Name</label>
+                        <input type="text" id="user-data-name" ng-model="userData.name" placeholder="Name">
+                    </div>
+                    <div style="display: block">
+                        <label for="user-data-email">Email</label>
+                        <input type="text" id="user-data-email" ng-model="userData.email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="radio-button-container">
+                    <div>
+                        <input type="radio" id="male" name="gender" value="0" ng-model="userData.gender"/>
+                        <label for="male">Male</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="female" name="gender" value="1" ng-model="userData.gender"/>
+                        <label for="female">Female</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="other" name="gender" value="2" ng-model="userData.gender"/>
+                        <label for="other">Other</label>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button-large" type="submit" style="margin-right: 20px">Save changes</button>
+                <a href="#/home" style="color:#777">Cancel</a>
+            </div>
+        </div>
 
-<form name="registerForm" ng-submit="editProfile()">
-    <input type="text" ng-model="userData.name" placeholder="Name"><br/>
-    <input type="text" ng-model="userData.email" placeholder="Email"><br/>
-    Gender:<input type="radio" name="gender" value="0" ng-model="userData.gender"/>
-    <input type="radio" name="gender" value="1" ng-model="userData.gender"/>
-    <input type="radio" name="gender" value="2" ng-model="userData.gender"/><br/>
-    <hr/>
-    Profile picture:
-    <div>
-        <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" base-sixty-four-image="profileImage" alt="Profile image" />
-        <label for="profile-img">Select Image</label>
-        <input id="profile-img" type="file" ng-model="profileImage" name="file" base-sixty-four-input>
-    </div>
-    <hr/>
-    Cover picture:
-    <div>
-        <img src="" data-ng-src="data:image/png;base64,{{userData.coverImageData}}" base-sixty-four-image="coverImage" alt="Cover image" />
-        <label for="cover-img">Select Image</label>
-        <input id="cover-img" type="file" ng-model="coverImage" name="file" base-sixty-four-input>
-    </div>
-
-    <a href="#/home">Cancel</a>
-    <button type="submit">Save changes</button>
-</form>
+    </form>
 </div>
-<hr/>
 
-
-
-<!--<br>Image preview: <br>-->
-<!--<img base-sixty-four-image="image" base-sixty-four-image-placeholder="placeholder.png" alt="">-->
-<h2>File Info</h2>
-<p>
-    <b>File Name: </b> {{profileImage.filename}}
-</p>
-<p>
-    <b>File type: </b> {{profileImage.filetype}}
-</p>
-<p>
-    <b>File Size: </b> {{profileImage.filesize}} bytes
-</p>
-<p>
-    <b>Base 64 encoded: </b>
-<p>
-    <textarea name="" id="" cols="30" rows="10">
-        {{profileImage.base64}}
-    </textarea>
-</p>
-</p>
+<!--<h2>File Info</h2>-->
+<!--<p>-->
+    <!--<b>File Name: </b> {{profileImage.filename}}-->
+<!--</p>-->
+<!--<p>-->
+    <!--<b>File type: </b> {{profileImage.filetype}}-->
+<!--</p>-->
+<!--<p>-->
+    <!--<b>File Size: </b> {{profileImage.filesize}} bytes-->
+<!--</p>-->
+<!--<p>-->
+    <!--<b>Base 64 encoded: </b>-->
+<!--<p>-->
+    <!--<textarea name="" id="" cols="30" rows="10">-->
+        <!--{{profileImage.base64}}-->
+    <!--</textarea>-->
+<!--</p>-->
+<!--</p>-->

@@ -1,57 +1,89 @@
-<header class="main-header">
-    <div>
+<header class="main-header clearfix">
+    <div class="left">
         <a href="#/home" class="header-link">
-            <span>News feed</span>
-            <img class="icon" src="img/news-feed.png" width="30px" height="30px" alt=""/>
+            <img src="img/logo.png" style="width:30px;height:30px;margin-top: 10px"/>
         </a>
+        <div style="height: 1px;width: 200px">
+        </div>
+        <input class="search-input" type="text" ng-model="search" placeholder="Search on facechuk" />
+            <button ng-click="searchUser(search)" style="border: none;background-color: transparent;cursor: pointer">
+                <img src="img/search.png" width="25px" height="25px" alt=""/>
+            </button>
     </div>
-    <div>
-        <a href="#/home" class="header-link">
-            <span>Requests</span>
-            <img class="icon" src="img/requests.png" width="30px" height="30px" alt=""/>
-            <span class="request-count" ng-mousedown="showRequests = !showRequests" ng-init="showRequests=false">{{requestsCount}}</span>
-        </a>
-        <div ng-show="showRequests" style="position:absolute;background-color: white" >
-            {{requestsCount}} results total
+    <div class="right">
+        <div>
+            <a href="#/user/me" class="header-link">
+                <img class="gravatar-container" src="" ng-src="{{userData.profileImageData || 'img/anon.png' }}" alt="{{userData.username}}" />
+                <!--<img class="gravatar-container" src="" data-ng-src="data:image/png;base64,{{userData.profileImageData || 'img/anon.png' }}" alt="{{userData.username}}" />-->
+                <span>{{userData.name}}</span>
+            </a>
+        </div>
+        <div>
+            <a href="#/home" class="header-link">
+                <img class="icon" src="img/news-feed.png" width="30px" height="30px" alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="#/home" class="header-link">
+                <img class="icon" src="img/requests.png" width="30px" height="30px" alt=""/>
+                <span class="request-count" ng-show="showRequestsCount" ng-mousedown="showRequests = !showRequests" ng-init="showRequests=false">{{requestsCount}}</span>
+            </a>
+            <div class="show-request-container" ng-show="showRequests">
+                <h2> <span>{{requestsCount}}</span> results total</h2>
+                <ul>
+                    <li ng-repeat="request in requestsData">
+                        <p>
+                            <img class="profile-image-min" src="" ng-src="{{request.user.profileImageData || 'img/anon.png'}}" />
+                            <!--<img class="gender-image-min" ng-src="{{request.user.gender | genderIcon}}"/>-->
+                            <span>{{request.user.name}}</span>
+                        </p>
+                        <p>
+                            <button class="button-min button-ok-min" ng-click="approveFriendRequest(request.id)">Accept</button>
+                            <button class="button-min button-no-min" ng-click="rejectFriendRequest(request.id)">Reject</button>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <a href="#/profile" class="header-link">
+                <img class="icon" src="img/setting.png" width="30px" height="30px" alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="#/changepassword" class="header-link">
+                <img class="icon" src="img/change-password.png" width="30px" height="30px" alt=""/>
+            </a>
+        </div>
+        <div>
+            <a href="#/" class="header-link" ng-click="logout()">
+                <img class="icon" src="img/logout.png" width="30px" height="30px" alt=""/>
+            </a>
+        </div>
+        <!--<div ng-show="showFoundUsers" style="position: absolute">-->
+            <!--<ul>-->
+                <!--<li ng-repeat="user in foundUsers">-->
+                    <!--<a href="#/user/{{user.username}}">{{user.name}}-->
+                        <!--<img src="" ng-src="{{user.profileImageData || 'img/anon.png'}}" alt="{{user.username}}" style="width:30px;height:30px"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<button ng-click="hideFoundUsers()">Hide</button>-->
+        <!--</div>-->
+<!---->
+        <div class="show-request-container" ng-show="showFoundUsers">
+            <h2> <span>{{foundUsersCount}}</span> results total</h2>
             <ul>
-                <li ng-repeat="request in requestsData">
-                    {{request.user.name}}
-                    <img src="" data-ng-src="data:image/png;base64,{{request.user.profileImageData}}" alt="{{request.user.username}}" style="width:30px;height:30px"/>
-                    <button ng-click="approveFriendRequest(request.id)">Accept</button>
-                    <button ng-click="rejectFriendRequest(request.id)">Reject</button>
+                <li ng-repeat="user in foundUsers">
+                    <p>
+                        <img class="profile-image-min" src="" ng-src="{{user.profileImageData || 'img/anon.png'}}" />
+                        <!--<img class="gender-image-min" ng-src="{{request.user.gender | genderIcon}}"/>-->
+                        <span>{{user.name}}</span>
+                    </p>
                 </li>
             </ul>
-            {{requestsData}}
+            <button ng-click="hideFoundUsers()">Hide</button>
         </div>
+<!-- -->
     </div>
-
-
-    <div>
-        <a href="#/user/me" ng-bind="userData.name"></a>
-        <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="{{userData.username}}" style="width:30px;height:30px"/>
-    </div>
-
-
-
-    <a href="#/profile">Edit profile</a>
-    <a href="#/changepassword">Change password</a>
-    <a href="#/" ng-click="logout()">Logout</a>
-
-    <form ng-submit="searchUser(search)">
-        <input type="text" ng-model="search" />
-        <button type="submit">Search</button>
-    </form>
-
-    <div ng-show="showFoundUsers" style="position: absolute">
-        <ul style="z-index: 2">
-            <li ng-repeat="user in foundUsers">
-                <a href="#/user/{{user.username}}">{{user.name}}
-                    <img src="" data-ng-src="data:image/png;base64,{{user.profileImageData}}" alt="{{user.username}}" style="width:30px;height:30px"/>
-                </a>
-            </li>
-        </ul>
-        <button ng-click="hideFoundUsers()">Hide</button>
-    </div>
-
 </header>
-<hr/>

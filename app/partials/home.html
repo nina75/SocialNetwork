@@ -1,7 +1,7 @@
 <div ng-include="'partials/header.html'"></div>
 
-<div>
-    <div>
+<div class="main-container clearfix">
+    <div style="float:left;width:58%;border:1px solid pink">
         <ul>
             <li ng-repeat="post in postsData" style="border:1px solid pink">
                 <div ng-show="true">
@@ -19,19 +19,15 @@
         </ul>
     </div>
 
-    <div>
+    <div style="float: right;width:40%;box-shadow:0 1px 3px rgba(0,0,0,0.25) ">
+        <h2 style="background-color: white;padding: 10px;font-size:16px">
+            <a href="#/user/me/friends" style="color:#3675B5">Friends</a>
+            <span style="color: #555">{{friendsCount}}</span>
+        </h2>
         <ul> <!--username, name, gender, profileImageData, id-->
-            <a href="#/user/me/friends">Friends</a>
-            <span>{{friendsCount}}</span>
-            <li ng-repeat="friend in friendsPreviewData.friends | limitTo: 6">
+            <li ng-repeat="friend in friendsPreviewData.friends | limitTo: 6" style="border-bottom: 1px solid #aaa;margin:10px;padding-bottom: 10px">
                 <div friend-details friend="friend" />
             </li>
         </ul>
     </div>
-    <hr/>
-
 </div>
-
-
-
-

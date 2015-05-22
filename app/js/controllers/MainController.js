@@ -28,11 +28,14 @@ app.controller('MainController', function MainController($scope, $location, $rou
     var getFriendsRequests = function() {
         userData.getFriendsRequests(headers, function(data){
             $scope.requestsCount = data.length;
+            $scope.showRequestsCount = $scope.requestsCount > 0 ? true : false;
             $scope.requestsData = data;
         }, function(error) {
             console.log(error);
         })
     }
+    console.log($scope.requestsCount);
+
 
     var approveFriendRequest = function(requestId) {
         userData.approveFriendRequest(headers, requestId, function(data) {
@@ -158,9 +161,6 @@ app.controller('MainController', function MainController($scope, $location, $rou
         getNewFeedPages();
         getFriendsRequests();
     }
-    
-    $scope.proba = function() {
-        alert('Ovca');
-    }
+
 
 });

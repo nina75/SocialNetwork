@@ -1,4 +1,4 @@
-body, div, header,form, img, span, input, section, button, label, h1, h2 {
+body, div, header, form, p, img, span, input, ul, li section, button, label, h1, h2 {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -29,12 +29,17 @@ a {
 	text-decoration: none;
 }
 
+ul, li {
+	list-style-type: none;
+}
+
 /*Initial header*/
 .initial-header {
 	background-color: #444;
 	height: 70px;
 	padding: 0 200px;
 	min-width: 1200px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
 
 .initial-logo-container {
@@ -45,6 +50,10 @@ a {
 .login-form-container {
 	float: right;
 	margin-top: 10px;
+}
+
+.login-form-container form div{
+	display: inline-block;
 }
 
 .login-form-container input {
@@ -108,7 +117,7 @@ a {
 
 .reg-form-container {
 	float: right;
-	width:39%;
+	width:35%;
 	padding-left: 30px
 }
 
@@ -130,7 +139,7 @@ a {
 	color: #333;
 }
 
-.reg-form-container .radio-button-container {
+.radio-button-container {
 	padding-left: 30px;
 }
 
@@ -139,12 +148,12 @@ a {
 	margin-right: 30px;
 }
 
-.reg-form-container label {
+label {
 	color: #555;
 	font-size:14px;
 }
 
-.reg-form-container input[type=radio] {
+input[type=radio] {
 	width: 20px;
 	height: 20px;
 	display: inline;
@@ -171,12 +180,41 @@ a {
 	background-color: #444;
 	height: 50px;
 	padding: 0 200px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	min-width: 1200px;
+}
+
+.main-header .left {
+	float: left;
+	position: relative;
+}
+
+.main-header .left .search-input {
+	position:absolute;
+	border-radius:3px;
+	width: 200px;
+	height: 25px;
+	border:1px solid grey;
+	top: 13px;
+	right: 27px;
+}
+
+.main-header .right {
+	float: right;
+}
+
+.main-header .right div:first-child {
+	margin-right: 20px;
+}
+
+.main-header .left div,
+.main-header .right div {
+	display: inline-block;
 }
 
 .main-header .header-link {
-	padding: 0 50px 0 10px ;
+	/*padding: 0 50px 0 10px ;*/
 	position:relative;
-	border-right: 1px solid #777;
 	font-size: 12px;
 	color:#dedede;
 	text-decoration: none;
@@ -184,9 +222,8 @@ a {
 }
 
 .main-header .icon {
-	position: absolute;
-	bottom:-5px;
-	right:10px;
+	margin-top: 10px;
+	/*position: absolute;*/
 }
 
 .main-header .request-count {
@@ -196,27 +233,195 @@ a {
 	border-radius: 20px;
 	background-color: #557FB5;
 	position: absolute;
-	top: -10px;
-	right: 5px;
+	top: 5px;
+	right: -3px;
 	color: #fff;
 	text-align: center;
 	padding-top: 4px;
-
-
 }
 
+.main-header .show-request-container {
+	position: absolute;
+	background-color: #fff;
+	border-radius: 3px;
+	width: 200px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
 
+.main-header .show-request-container h2{
+	color: #333;
+	font-size: 14px;
+	font-weight: normal;
+	border-bottom: 1px solid #aaa;
+	text-align: center;
+	padding: 5px 0;
+	background-color: #F2F4F6;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
 
+.main-header .show-request-container h2 span {
+	font-weight: bold;
+}
 
+.main-header .show-request-container .profile-image-min {
+	border: 1px solid rgba(22, 68, 136, 0.67);
+	border-radius: 2px;
+	width: 30px;
+	height: 30px;
+}
 
+.main-header .show-request-container .gender-image-min {
+	width: 25px;
+	height: 20px;
+}
 
+.main-header .show-request-container li {
+	border-bottom: 1px solid #aaa;
+}
 
+.main-header .show-request-container p {
+	padding: 5px 10px;
+}
 
+.main-header .gravatar-container {
+	width:30px;
+	height:30px;
+	border-radius:2px;
+	position: absolute;
+	top: -20px;
+	left: -50px;
+}
 
+.main-header .show-request-container p:last-child {
+	text-align: center;
+}
 
+.main-header .show-request-container p span {
+	font-size: 12px;
+	color: #333;
+}
 
+.button-min {
+	width: 60px;
+	height: 15px;
+	border-radius: 3px;
+	color: #fff;
+	cursor: pointer;
+	padding: 3px;
+	font-weight: bold;
+	box-sizing: content-box;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	border:none;
+	text-shadow: 1px 1px 1px grey;
+}
 
-/*.........*/
-header div, header form {
+.button-ok-min {
+	background-color: #557FB5;
+}
+
+.button-no-min {
+	background-color: #888;
+}
+
+/*edit-profile*/
+.profile-image-container {
+	float: left;
+	width: 28%;
+	height: 300px;
+}
+
+.cover-image-container {
+	float: right;
+	width:70%;
+	height: 300px;
+}
+
+.profile-image-container img {
+	width: 98%;
+	height: 85%;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+
+.cover-image-container img {
+	float: right;
+	width: 98%;
+	height: 85%;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px grey;
+}
+
+.profile-image-container span, .cover-image-container span {
+	color: #777;
+}
+
+.other-info-container div div{
 	display: inline-block;
+	margin-right: 20px;
 }
+
+.other-info-container {
+	float: left;
+	width: 30%;
+
+}
+
+.button-container {
+	float: right;
+	width: 68%;
+	height: 100px;
+	text-align: center;
+	padding-top: 50px;
+}
+
+.other-info-container input[type=text] {
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	height: 30px;
+	width: 100%;
+	padding-left: 10px;
+}
+
+.other-info-container div {
+	margin: 10px 0;
+}
+
+.other-info-container .radio-button-container {
+	padding-left: 10px;
+}
+
+.button-large {
+	width: 140px;
+	height: 25px;
+	border-radius: 3px;
+	color: #fff;
+	cursor: pointer;
+	padding: 3px;
+	font-weight: bold;
+	box-sizing: content-box;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	border:none;
+	text-shadow: 1px 1px 1px grey;
+	background-color: #557FB5;
+	font-size: 14px;
+}
+
+.button-large:hover {
+	background-color: rgba(85, 127, 181, 0.68);
+}
+
+.select-image {
+	display: block;
+	border:1px solid #888;
+	width: 100px;
+	padding: 5px;
+	background-color: #aaa;
+	border-radius: 2px;
+	color: white;
+	cursor: pointer;
+}
+
+
+
+
