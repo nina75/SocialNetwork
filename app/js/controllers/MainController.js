@@ -8,6 +8,8 @@ app.controller('MainController', function MainController($scope, $location, $rou
     var getUserProfile = function() {
         userData.getUserProfile(headers, function(data) {
             $scope.userData = data;
+            console.log(data.profileImageData);
+            $scope.myProfileImage = data.profileImageData;
         }, function(error) {
             notifyService.showError("Unsuccessful Connection to Database!")
         })

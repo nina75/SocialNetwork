@@ -6,9 +6,21 @@
         <div style="height: 1px;width: 200px">
         </div>
         <input class="search-input" type="text" ng-model="search" placeholder="Search on facechuk" />
-            <button ng-click="searchUser(search)" style="border: none;background-color: transparent;cursor: pointer">
-                <img src="img/search.png" width="25px" height="25px" alt=""/>
-            </button>
+        <button ng-click="searchUser(search)" style="border: none;background-color: transparent;cursor: pointer">
+            <img src="img/search.png" width="25px" height="25px" alt=""/>
+        </button>
+        <div class="show-request-container" ng-show="showFoundUsers" style="z-index: 10!important;">
+            <h2> <span>{{foundUsersCount}}</span> results total</h2>
+            <ul>
+                <li ng-repeat="user in foundUsers" style="padding:5px">
+                    <a href="#/user/{{user.username}}" style="color: #333;font-size: 12px">
+                        <img class="profile-image-min" src="" ng-src="{{user.profileImageData || 'img/anon.png'}}" />
+                        <span>{{user.name}}</span>
+                    </a>
+                </li>
+            </ul>
+            <button ng-click="hideFoundUsers()">Hide</button>
+        </div>
     </div>
     <div class="right">
         <div>
@@ -60,30 +72,6 @@
                 <img class="icon" src="img/logout.png" width="30px" height="30px" alt=""/>
             </a>
         </div>
-        <!--<div ng-show="showFoundUsers" style="position: absolute">-->
-            <!--<ul>-->
-                <!--<li ng-repeat="user in foundUsers">-->
-                    <!--<a href="#/user/{{user.username}}">{{user.name}}-->
-                        <!--<img src="" ng-src="{{user.profileImageData || 'img/anon.png'}}" alt="{{user.username}}" style="width:30px;height:30px"/>-->
-                    <!--</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-            <!--<button ng-click="hideFoundUsers()">Hide</button>-->
-        <!--</div>-->
-<!---->
-        <div class="show-request-container" ng-show="showFoundUsers">
-            <h2> <span>{{foundUsersCount}}</span> results total</h2>
-            <ul>
-                <li ng-repeat="user in foundUsers">
-                    <p>
-                        <img class="profile-image-min" src="" ng-src="{{user.profileImageData || 'img/anon.png'}}" />
-                        <!--<img class="gender-image-min" ng-src="{{request.user.gender | genderIcon}}"/>-->
-                        <span>{{user.name}}</span>
-                    </p>
-                </li>
-            </ul>
-            <button ng-click="hideFoundUsers()">Hide</button>
-        </div>
-<!-- -->
+
     </div>
 </header>

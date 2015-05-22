@@ -1,38 +1,43 @@
 <div ng-include="'partials/header.html'"></div>
 
-<!--get data about me-->
+<!--get data about me-- userData>
 <!--id, username, name, email, gender, profileImageData, coverImageData -->
-<div style="position: relative">
-    <img src="" data-ng-src="data:image/png;base64,{{userData.coverImageData}}" alt="Oi" style="width:1200px;height:200px" />
-    <div style="position: absolute;bottom:0">
-        <img src="" data-ng-src="data:image/png;base64,{{userData.profileImageData}}" alt="Oi" style="width:150px;height:150px"/><br/>
+<div class="main-container">
+    <div style="position: relative">
+        <img src="" ng-src="{{userData.coverImageData || 'img/default-cover.png'}}" alt="Oi" style="width:100%;height:250px;box-shadow:0 1px 3px rgba(0,0,0,0.25)" />
+        <div style="position: absolute;bottom:0px;width:150px;height:150px;border: 2px solid white;box-shadow:0 1px 3px rgba(0,0,0,0.25);">
+            <img src="" ng-src="{{userData.profileImageData || 'img/anonymous.jpg'}}" alt=""  style="width: 100%;height: 100%"/>
+        </div>
+        <div style="position: absolute;bottom:15px;left: 180px;font-size:30px;color:pink">
+            <span style="color: #fff;text-shadow: 1px 1px 3px black">{{userData.name}}</span>
+        </div>
+        <div style="position: absolute;bottom:2px;left:2px">
+            <img ng-src="{{userData.gender | genderIcon}}" width="40" height="30"/>
+        </div>
     </div>
-    <div style="position: absolute;bottom:15px;left: 300px;font-size:30px;color:pink">{{userData.name}}</div>
-    <div style="position: absolute;bottom:15px;left:15px">
-        <img ng-src="{{userData.gender | genderIcon}}"/>
-    </div>
-</div>
 
-<div>
-    <ul> <!--username, name, gender, profileImageData, id-->
-        <a href="#/user/me/friends">Friends</a>
-        <span>{{friendsCount}}</span>
-
-        <li ng-repeat="friend in friendsPreviewData.friends | limitTo: 6">
-            {{friend.name}}
-            <div friend-details friend="friend" />
-        </li>
-    </ul>
-</div>
-
-<div ng-controller="UserWallController">
     <div>
-        <ul>
-            <li ng-repeat="post in userPostsData">
-                <div post-details post="post" />
+        <ul> <!--username, name, gender, profileImageData, id-->
+            <a href="#/user/me/friends">Friends</a>
+            <span>{{friendsCount}}</span>
+
+            <li ng-repeat="friend in friendsPreviewData.friends | limitTo: 6">
+                {{friend.name}}
+                <div friend-details friend="friend" />
             </li>
         </ul>
     </div>
 
+    <div ng-controller="UserWallController">
+        <div>
+            <ul>
+                <li ng-repeat="post in userPostsData">
+                    <div post-details post="post" />
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <hr/>
 </div>
-<hr/>
+

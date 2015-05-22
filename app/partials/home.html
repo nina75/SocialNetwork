@@ -1,18 +1,19 @@
 <div ng-include="'partials/header.html'"></div>
 
 <div class="main-container clearfix">
-    <div style="float:left;width:58%;border:1px solid pink">
+    <div style="float:left;width:58%">
         <ul>
-            <li ng-repeat="post in postsData" style="border:1px solid pink">
-                <div ng-show="true">
-                    <button ng-click="deletePost(post.id)">Delete post</button>
-                    <button ng-click="editPost(post.id)">Edit post</button>
+            <li ng-repeat="post in postsData" style="background-color:#fff;padding: 10px;position:relative;margin-bottom: 15px;box-shadow:0 1px 3px rgba(0,0,0,0.25) ">
+                <div ng-show="true" style="position: absolute;right: 10px">
+                    <div >
+                        <button ng-click="editPost(post.id)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Edit</button>
+                        <button ng-click="deletePost(post.id)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Delete</button>
+                    </div>
+                    <div ng-show="false">
+                        <input type="text" placeholder="New content" ng-model="post.postContent"/>
+                        <button ng-click="editPost(post.id, post.postContent)">Edit</button>
+                    </div>
                 </div>
-                <div ng-show="true">
-                    <input type="text" placeholder="New content" ng-model="post.postContent"/>
-                    <button ng-click="editPost(post.id, post.postContent)">Edit</button>
-                </div>
-
                 <div post-details post="post" />
             </li>
         </ul>

@@ -422,6 +422,11 @@ input[type=radio] {
 	cursor: pointer;
 }
 
+.post-item {
+	margin-bottom: 10px;
+}
+
+
 
 
 

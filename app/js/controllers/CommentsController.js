@@ -34,4 +34,5 @@ app.controller('CommentsController', function CommentsController($scope, authent
     $scope.hideComments = hideComments;
     $scope.commentPost = commentPost;
     $scope.getPostComments = getPostComments;
+
 })
