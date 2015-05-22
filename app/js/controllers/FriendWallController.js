@@ -45,6 +45,7 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
 
     var addNewPost = function(username) {
         posts.addNewPost(headers, {postContent: $scope.postContent,username: username}, function(data) {
+            notifyService.showInfo('Post added successful');
             getUserPosts(username);
         }, function(error) {
             notifyService.showError('Unsuccessful Connect To Database');

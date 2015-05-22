@@ -1,11 +1,19 @@
-<p>Author
-    <img src="" data-ng-src="{{post.author.profileImageData}}" alt="{{post.author.username}}" style="width:30px;height:30px" />
-    {{post.author.username}}{{post.author.name}}
-</p>
-<p>
-    WallOwner<img src="" style="width:30px;height:30px" data-ng-src="{{post.wallOwner.profileImageData}}" />
-    {{post.wallOwner.name}}
-</p>
+<div class="clearfix">
+    <img style="float: left;width:30px;height:30px" src="" data-ng-src="{{post.author.profileImageData}}" alt="{{post.author.username}}" />
+    <div>
+        <span>{{post.author.name}}</span>
+        <span> to </span>
+        <span>{{post.wallOwner.name}}</span>
+    </div>
+    <div>
+        <span>{{post.date | date}}</span>
+    </div>
+</div>
+
+<!--<p>-->
+    <!--WallOwner<img src="" style="width:30px;height:30px" data-ng-src="{{post.wallOwner.profileImageData}}" />-->
+
+<!--</p>-->
 <p>{{post.postContent}}</p>
 <p>{{post.date}}</p>
 
