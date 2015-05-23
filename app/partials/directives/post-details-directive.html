@@ -2,9 +2,9 @@
     <div class="clearfix post-item" style="border-bottom: 1px solid #ccc">
         <img style="float: left;width:30px;height:30px" src="" data-ng-src="{{post.author.profileImageData}}" alt="{{post.author.username}}" />
         <div>
-            <span style="color: #3675B5">{{post.author.name}}</span>
+            <span style="color: #3675B5"><a style="color: inherit" href="#/user/{{post.author.username}}">{{post.author.name}}</a></span>
             <span> to </span>
-            <span style="color: #3675B5">{{post.wallOwner.name}}</span>
+            <span style="color: #3675B5"><a  style="color:inherit" href="#/user/{{post.wallOwner.username}}">{{post.wallOwner.name}}</a></span>
         </div>
         <div class="post-item">
             <span style="font-size: 12px;color: #777;font-family: Consolas">{{post.date | date}}</span>
@@ -41,7 +41,7 @@
                 <div class="clearfix">
                     <img style="float: left;width:25px;height:25px" src="" data-ng-src="{{comment.author.profileImageData}}" alt="{{post.author.username}}" />
                     <div>
-                        <span style="color: #3675B5;font-size: 12px">{{comment.author.name}}</span>
+                        <span style="color: #3675B5;font-size: 12px"><a style="color:inherit" href="#/user/{{comment.author.username}}">{{comment.author.name}}</a></span>
                         <span style="font-size: 12px;">{{comment.commentContent}}</span>
                     </div>
                     <div>
