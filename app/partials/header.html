@@ -36,11 +36,11 @@
             </a>
         </div>
         <div>
-            <a href="#/home" class="header-link">
+            <a href="" class="header-link">
                 <img class="icon" src="img/requests.png" width="30px" height="30px" alt=""/>
                 <span class="request-count" ng-show="showRequestsCount" ng-mousedown="showRequests = !showRequests" ng-init="showRequests=false">{{requestsCount}}</span>
             </a>
-            <div class="show-request-container" ng-show="showRequests">
+            <div class="show-request-container" ng-show="showRequests" style="z-index:10!important;">
                 <h2> <span>{{requestsCount}}</span> results total</h2>
                 <ul>
                     <li ng-repeat="request in requestsData">

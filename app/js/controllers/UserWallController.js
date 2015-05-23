@@ -22,6 +22,15 @@ app.controller('UserWallController', function UserWallController($scope, authent
         })
     }
 
+    var deleteMyPost = function(postId, username) {
+        posts.deletePost(postId, headers, function(data) {
+            getUserPosts(username);
+        }, function(error) {
+            notifyService.showError(error.message);
+        })
+    }
+
     $scope.addNewPost = addNewPost;
+    $scope.deleteMyPost = deleteMyPost;
     getUserPosts(username);
 });

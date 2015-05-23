@@ -17,22 +17,23 @@
     </div>
     <div class="clearfix" style="margin-top: 20px">
         <div ng-controller="UserWallController" style="float:left;width:58%">
-            <div>
+            <div class="add-new-msg">
                 <form ng-submit="addNewPost(userData.username)">
-                    <input type="text" placeholder="Post content" ng-model="postContent" style="width: 80%;height: 25px"/>
-                    <button type="submit">Send</button>
+                    <input type="text" placeholder="Add new message" ng-model="postContent" style="width: 80%;height: 25px"/>
+                    <button class="button" type="submit">Post</button>
                 </form>
             </div>
             <ul>
                 <li ng-repeat="post in userPostsData" style="background-color:#fff;padding: 10px;position:relative;margin-bottom: 15px;box-shadow:0 1px 3px rgba(0,0,0,0.25) ">
-                    <div ng-show="true" style="position: absolute;right: 10px">
+                    <div ng-if="post.author.username === userData.username" style="position: absolute;right: 10px">
                         <div >
-                            <button ng-click="editPost(post.id)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Edit</button>
-                            <button ng-click="deletePost(post.id)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Delete</button>
+                            <button ng-click="showHideEditElements()" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5;cursor: pointer">Edit</button>
+                            <button ng-click="deleteMyPost(post.id, userData.username)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5;cursor: pointer">Delete</button>
                         </div>
-                        <div ng-show="false">
+                        <div ng-show="showEditPostElements">
                             <input type="text" placeholder="New content" ng-model="post.postContent"/>
-                            <button ng-click="editPost(post.id, post.postContent)">Edit</button>
+                            <button class="button" ng-click="editPost(post.id, post.postContent)">Send</button>
+                            <button class="cancel-button" ng-click="showHideEditElements()">Cancel</button>
                         </div>
                     </div>
                     <div post-details post="post" />

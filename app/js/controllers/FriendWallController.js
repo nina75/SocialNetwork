@@ -28,6 +28,7 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
 
     var getFriendsDetailedFriendsList = function(username) {
         friendsData.getFriendsDetailedFriendsList(headers, username, function(data) {
+            $scope.friendsFriendsCount = data.length;
             $scope.friendsDetailedList = data;
         }, function(error) {
             //notifyService.showError('To view page send FRIEND REQUEST');
@@ -61,9 +62,25 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
         })
     }
 
+    var editOwnPost = function(postId, postContent, username) {
+        posts.editPost(postId, {postContent: postContent}, headers, function(data) {
+            showHideEditElements();
+            getUserPosts(username);
+        }, function(error) {
+            notifyService.showError(error.message);
+        })
+    }
+
+    var showHideEditElements = function(){
+        $scope.showEditPostElements = !$scope.showEditPostElements;
+    }
+
+    $scope.showEditPostElements = false;
     $scope.sendFriendRequest = sendFriendRequest;
     $scope.addNewPost = addNewPost;
     $scope.deleteOwnPost = deleteOwnPost;
+    $scope.editOwnPost = editOwnPost;
+    $scope.showHideEditElements = showHideEditElements;
 
     getUserFullData(username);
     getUserPosts(username);
