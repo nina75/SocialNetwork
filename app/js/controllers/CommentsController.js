@@ -19,19 +19,14 @@ app.controller('CommentsController', function CommentsController($scope, authent
             if(data.length > 0) {
                 $scope.commentsCount = data.length;
                 $scope.commentsData = data;
-                $scope.showComments = !$scope.showComments;
+                $scope.showAllComments = true;
             }
         }, function(error) {
             notifyService.showError(error.message);
         })
     }
 
-    var hideComments = function(){
-        $scope.showAllComment = false;
-    }
-
-    $scope.showAllComment = false;
-    $scope.hideComments = hideComments;
+    $scope.showAllComments = false;
     $scope.commentPost = commentPost;
     $scope.getPostComments = getPostComments;
 

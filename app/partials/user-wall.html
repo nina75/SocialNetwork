@@ -19,7 +19,7 @@
         <div ng-controller="UserWallController" style="float:left;width:58%">
             <div class="add-new-msg">
                 <form ng-submit="addNewPost(userData.username)">
-                    <input type="text" placeholder="Add new message" ng-model="postContent" style="width: 80%;height: 25px"/>
+                    <input type="text" placeholder="Add new message" rows="3" ng-model="postContent" />
                     <button class="button" type="submit">Post</button>
                 </form>
             </div>
@@ -30,7 +30,7 @@
                             <button ng-click="showHideEditElements()" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5;cursor: pointer">Edit</button>
                             <button ng-click="deleteMyPost(post.id, userData.username)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5;cursor: pointer">Delete</button>
                         </div>
-                        <div ng-show="showEditPostElements">
+                        <div class="edit-post" ng-show="showEditPostElements">
                             <input type="text" placeholder="New content" ng-model="post.postContent"/>
                             <button class="button" ng-click="editPost(post.id, post.postContent)">Send</button>
                             <button class="cancel-button" ng-click="showHideEditElements()">Cancel</button>

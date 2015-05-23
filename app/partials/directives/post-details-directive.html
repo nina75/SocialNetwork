@@ -13,16 +13,30 @@
     <div class="post-item" style="border-bottom: 1px solid #ccc">
         <span>{{post.postContent}}</span>
     </div>
-    <div class="post-item">
-        <span><img src="img/like-button.png" width="15" height="15" alt=""/></span>
-        <span style="font-size:14px;color:#3675B5">{{post.likesCount}}</span>
-        <span><img src="img/comment.png" width="15" height="15" alt=""/></span>
-        <span style="font-size:14px;color:#3675B5">{{post.totalCommentsCount}}</span>
-        <button ng-click="likeUnlikePost(post)">{{post.liked | likeStatus}}</button>
-    </div>
 
-    <div>
-        <ul>
+    <div ng-controller="CommentsController">
+        <div class="post-item">
+            <span><img src="img/like-button.png" width="15" height="15" alt=""/></span>
+            <span style="font-size:14px;color:#3675B5">{{post.likesCount}}</span>
+            <span><a href="" ng-click="getPostComments(post.id)"><img src="img/comment.png" width="15" height="15" alt=""/></a></span>
+            <span style="font-size:14px;color:#3675B5">{{commentsCount || post.totalCommentsCount}}</span>
+            <button ng-click="likeUnlikePost(post)">{{post.liked | likeStatus}}</button>
+        </div>
+        <ul ng-show="showAllComments">
+            <li ng-repeat="comment in commentsData | orderBy: date">
+                <div class="clearfix">
+                    <img style="float: left;width:25px;height:25px" src="" data-ng-src="{{comment.author.profileImageData}}" alt="{{post.author.username}}" />
+                    <div>
+                        <span style="color: #3675B5;font-size: 12px">{{comment.author.name}}</span>
+                        <span style="font-size: 12px;">{{comment.commentContent}}</span>
+                    </div>
+                    <div>
+                        <span style="font-size: 12px;color: #777;font-family: Consolas">{{comment.date | date}}</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-hide="showAllComments">
             <li ng-repeat="comment in post.comments | orderBy: date | limitTo:3">
                 <div class="clearfix">
                     <img style="float: left;width:25px;height:25px" src="" data-ng-src="{{comment.author.profileImageData}}" alt="{{post.author.username}}" />
@@ -36,28 +50,10 @@
                 </div>
             </li>
         </ul>
-        <div ng-controller="CommentsController">
+        <div>
             <input type="text" placeholder="Add comment" ng-model="commentContent"/>
             <button type="submit" ng-click="commentPost(post.id)">Send</button>
         </div>
     </div>
-
-    <div ng-controller="CommentsController">
-
-
-        <!--<button ng-click="getPostComments(post.id)">Comments</button>-->
-        <!--<input type="text" placeholder="Add comment" ng-model="commentContent"/>-->
-        <!--<button type="submit" ng-click="commentPost(post.id)">Send comment</button>-->
-        <!--<div ng-show="showComments">-->
-            <!--<ul ng-hide="showAllComments">-->
-                <!--<li ng-repeat="comment in commentsData | orderBy: date | limitTo:3">{{comment.commentContent}}</li>-->
-            <!--</ul>-->
-            <!--<div ng-hide="showAllComments" ng-mousedown="showAllComments=!showAllComments" ng-init="false">Get all comments</div>-->
-            <!--<div ng-show="showAllComments">-->
-                <!--<ul>-->
-                    <!--<li ng-repeat="comment in commentsData | orderBy: date">{{comment.commentContent}}</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 </div>

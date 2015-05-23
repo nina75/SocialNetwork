@@ -21,10 +21,10 @@
 
     <div class="clearfix" style="margin-top: 20px">
         <div style="float:left;width:58%">
-            <div style="">
+            <div  class="add-new-msg">
                 <form ng-submit="addNewPost(userFullData.username)">
-                    <input type="text" placeholder="Post content" ng-model="postContent" style="width: 80%;height: 25px"/>
-                    <button type="submit">Send</button>
+                    <input type="text" placeholder="Post content" ng-model="postContent" />
+                    <button class="button" type="submit">Send</button>
                 </form>
             </div>
             <ul>
@@ -34,22 +34,12 @@
                             <button ng-click="showHideEditElements()" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Edit</button>
                             <button ng-click="deleteOwnPost(post.id, userFullData.username)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Delete</button>
                         </div>
-                        <div ng-show="showEditPostElements">
+                        <div class="edit-post" ng-show="showEditPostElements">
                             <input type="text" placeholder="New content" ng-model="post.postContent"/>
-                            <button ng-click="editOwnPost(post.id, post.postContent,userFullData.username)">Send</button>
-                            <button ng-click="showHideEditElements()">Cancel</button>
+                            <button class="button" ng-click="editOwnPost(post.id, post.postContent,userFullData.username)">Send</button>
+                            <button class="cancel-button" ng-click="showHideEditElements()">Cancel</button>
                         </div>
                     </div>
-                    <!--<div ng-if="post.author.username === userData.username" style="position: absolute;right: 10px">-->
-                        <!--<div >-->
-                            <!--<button ng-click="editPost(post.id)" style="cursor:pointer;background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Edit</button>-->
-                            <!--<button ng-click="deleteOwnPost(post.id, userFullData.username)" style="cursor:pointer;background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Delete</button>-->
-                        <!--</div>-->
-                        <!--<div ng-show="false">-->
-                            <!--<input type="text" placeholder="New content" ng-model="post.postContent"/>-->
-                            <!--<button ng-click="editOwnPost(post.id, post.postContent, userFullData.username)">Edit</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
                     <div post-details post="post" />
                 </li>
             </ul>
@@ -57,7 +47,7 @@
 
         <div style="float: right;width:40%;box-shadow:0 1px 3px rgba(0,0,0,0.25) ">
             <h2 style="background-color: white;padding: 10px;font-size:16px">
-                <a href="#/user/me/friends" style="color:#3675B5">Friends</a>
+                <a href="#/user/{{userFullData.username}}/friends" style="color:#3675B5">Friends</a>
                 <span style="color: #555">{{friendsFriendsCount}}</span>
             </h2>
             <ul> <!--username, name, gender, profileImageData, id-->
@@ -68,24 +58,3 @@
         </div>
     </div>
 </div>
-<!--get friend wall by pages-->
-<!--[ {
-          id,
-          author:{id,profileImageData, username, name, gender},
-          wallOwner:{id, profileImage Data, username, name, gender},
-          postContent,
-          date,
-          likesCount,
-          liked,
-          totalCommentsCount,
-          comments:[{id, author:{id, profileImageData, username, name, gender}, likesCount, commentContent, date, liked}, {}]
-       },
-       {.....},
-       {.....}
-    ]-->
-
-<!--get friend's detailed friends list-->
-<!-- [
-        {id, profileImageData, username, name, gender},
-        {...}
-     ]-->

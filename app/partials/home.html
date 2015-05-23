@@ -9,10 +9,10 @@
                         <button ng-click="showHideEditElements()" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Edit</button>
                         <button ng-click="deletePost(post.id)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Delete</button>
                     </div>
-                    <div ng-show="showEditPostElements">
+                    <div class="edit-post" ng-show="showEditPostElements">
                         <input type="text" placeholder="New content" ng-model="post.postContent"/>
-                        <button ng-click="editPost(post.id, post.postContent)">Send</button>
-                        <button ng-click="showHideEditElements()">Cancel</button>
+                        <button class="button" ng-click="editPost(post.id, post.postContent)">Send</button>
+                        <button class="cancel-button" ng-click="showHideEditElements()">Cancel</button>
                     </div>
                 </div>
                 <div post-details post="post" />

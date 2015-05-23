@@ -39,7 +39,6 @@ app.controller('MainController', function MainController($scope, $location, $rou
 
     var approveFriendRequest = function(requestId) {
         userData.approveFriendRequest(headers, requestId, function(data) {
-            alert('Request accepted');
             getFriendsRequests();
             getOwnFriendsPreview();
         }, function(error) {
@@ -139,7 +138,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             notifyService.showError(error.message);
         })
     }
-
+    
     var showHideEditElements = function(){
         $scope.showEditPostElements = !$scope.showEditPostElements;
     }

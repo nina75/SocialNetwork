@@ -27,6 +27,11 @@ app.config(function ($routeProvider,$locationProvider) {
             controller:'MainController'
 
         })
+        .when('/user/:username/friends', {
+            templateUrl:'partials/friends-friends.html',
+            controller:'MainController'
+
+        })
         .when('/user/:username', {
             templateUrl:'partials/friend-wall.html',
             controller:'MainController'

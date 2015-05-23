@@ -1,13 +1,13 @@
 <div ng-include="'partials/header.html'"></div>
 
-<div ng-controller="OwnFriendsController" class="main-container">
+<div ng-controller="FriendsFriendsController" class="main-container">
     <div style="box-shadow:0 1px 3px rgba(0,0,0,0.25) ">
         <h2 style="background-color: white;padding: 10px;font-size:16px">
-            <a href="#/user/me/friends" style="color:#3675B5">Friends</a>
-            <span style="color: #555">{{friendsCount}}</span>
+            <a href="#/user/:username" style="color:#3675B5">Friends</a>
+            <span style="color: #555">{{friendsFriendsCount}}</span>
         </h2>
         <ul> <!--username, name, gender, profileImageData, id-->
-            <li ng-repeat="friend in friendsData" style="border-bottom: 1px solid #aaa;margin:10px;padding-bottom: 10px">
+            <li ng-repeat="friend in friendsFriendsData" style="border-bottom: 1px solid #aaa;margin:10px;padding-bottom: 10px">
                 <div friend-details friend="friend" />
             </li>
         </ul>
