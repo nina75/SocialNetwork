@@ -501,6 +501,18 @@ input[type=radio] {
 	display: block;
 }
 
+.comments-button-container {
+	float: right;
+}
+
+.comments-button-container button {
+	border: none;
+	background-color: transparent;
+	color: #557FB5;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 
 
 

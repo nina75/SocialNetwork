@@ -1,5 +1,4 @@
 <div ng-controller="PostsController">
-    {{post.id}}
     <div class="clearfix post-item" style="border-bottom: 1px solid #ccc">
         <img style="float: left;width:30px;height:30px" src="" data-ng-src="{{post.author.profileImageData}}" alt="{{post.author.username}}" />
         <div>
@@ -16,7 +15,6 @@
     </div>
 
     <div ng-controller="CommentsController">
-
         <div class="show-request-container" ng-show="showLikes" style="z-index: 10!important;position: absolute;background-color: #ffffff;box-shadow:0 1px 3px rgba(0,0,0,0.25)">
             <button ng-click="hideLikes()">X</button>
             <ul>
@@ -36,8 +34,14 @@
             <span style="font-size:14px;color:#3675B5">{{commentsCount || post.totalCommentsCount}}</span>
             <button ng-click="likeUnlikePost(post)">{{post.liked | likeStatus}}</button>
         </div>
+
         <ul ng-show="showAllComments">
             <li ng-repeat="comment in commentsData | orderBy: date">
+                <!--<button ng-click="deleteComment(post.id, comment.id)">Edit</button>-->
+                <div class="comments-button-container" ng-show="comment.author.username === username">
+                    <button ng-click="deleteComment(post.id, comment.id)">Edit</button>
+                    <button>Delete</button>
+                </div>
                 <div comment-details comment="comment" />
             </li>
         </ul>

@@ -25,5 +25,15 @@ app.factory('comments', function($http, BASE_URL) {
             })
     }
 
+    //delete post comment
+    service.deleteComment = function(postId, commentId, headers, success, error) {
+        $http.delete(serviceUrl + '/' + postId +'/comments/' + commentId, {headers: headers})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
+    }
+
     return service;
 })

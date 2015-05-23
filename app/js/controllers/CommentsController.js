@@ -20,7 +20,17 @@ app.controller('CommentsController', function CommentsController($scope, authent
                 $scope.commentsCount = data.length;
                 $scope.commentsData = data;
                 $scope.showAllComments = true;
+                $scope.username = sessionStorage['username'];
             }
+        }, function(error) {
+            notifyService.showError(error.message);
+        })
+    }
+
+    //delete comment
+    var deleteComment = function(postId, commentId) {
+        comments.deleteComment(postId, commentId, headers, function(data) {
+            alert('dadada');
         }, function(error) {
             notifyService.showError(error.message);
         })
@@ -29,5 +39,6 @@ app.controller('CommentsController', function CommentsController($scope, authent
     $scope.showAllComments = false;
     $scope.commentPost = commentPost;
     $scope.getPostComments = getPostComments;
+    $scope.deleteComment = deleteComment;
 
 })
