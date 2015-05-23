@@ -38,12 +38,12 @@
         </div>
         <ul ng-show="showAllComments">
             <li ng-repeat="comment in commentsData | orderBy: date">
-                <div post-details comment="comment" />
+                <div comment-details comment="comment" />
             </li>
         </ul>
         <ul ng-hide="showAllComments">
             <li ng-repeat="comment in post.comments | orderBy: date | limitTo:3">
-                <div post-details comment="comment" />
+                <div comment-details comment="comment" />
             </li>
         </ul>
         <div>
