@@ -15,29 +15,56 @@
             <img ng-src="{{userData.gender | genderIcon}}" width="40" height="30"/>
         </div>
     </div>
-
-    <div>
-        <ul> <!--username, name, gender, profileImageData, id-->
-            <a href="#/user/me/friends">Friends</a>
-            <span>{{friendsCount}}</span>
-
-            <li ng-repeat="friend in friendsPreviewData.friends | limitTo: 6">
-                {{friend.name}}
-                <div friend-details friend="friend" />
-            </li>
-        </ul>
-    </div>
-
-    <div ng-controller="UserWallController">
-        <div>
+    <div class="clearfix" style="margin-top: 20px">
+        <div ng-controller="UserWallController" style="float:left;width:58%">
+            <div>
+                <form ng-submit="addNewPost(userData.username)">
+                    <input type="text" placeholder="Post content" ng-model="postContent" style="width: 80%;height: 25px"/>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
             <ul>
-                <li ng-repeat="post in userPostsData">
+                <li ng-repeat="post in userPostsData" style="background-color:#fff;padding: 10px;position:relative;margin-bottom: 15px;box-shadow:0 1px 3px rgba(0,0,0,0.25) ">
+                    <div ng-show="true" style="position: absolute;right: 10px">
+                        <div >
+                            <button ng-click="editPost(post.id)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Edit</button>
+                            <button ng-click="deletePost(post.id)" style="background-color:transparent; border: none;text-decoration:underline;color:#3675B5">Delete</button>
+                        </div>
+                        <div ng-show="false">
+                            <input type="text" placeholder="New content" ng-model="post.postContent"/>
+                            <button ng-click="editPost(post.id, post.postContent)">Edit</button>
+                        </div>
+                    </div>
                     <div post-details post="post" />
                 </li>
             </ul>
         </div>
 
+        <!--username, name, gender, profileImageData, id-->
+        <div style="float: right;width:40%;box-shadow:0 1px 3px rgba(0,0,0,0.25) ">
+            <h2 style="background-color: white;padding: 10px;font-size:16px">
+                <a href="#/user/me/friends" style="color:#3675B5">Friends</a>
+                <span style="color: #555">{{friendsCount}}</span>
+            </h2>
+            <ul> <!--username, name, gender, profileImageData, id-->
+                <li ng-repeat="friend in friendsPreviewData.friends | limitTo: 6" style="border-bottom: 1px solid #aaa;margin:10px;padding-bottom: 10px">
+                    <div friend-details friend="friend" />
+                </li>
+            </ul>
+        </div>
+
+        <!--<div ng-controller="UserWallController"> userPostsData-->
+        <!--<div>-->
+        <!--<ul>-->
+        <!--<li ng-repeat="post in userPostsData">-->
+        <!--<div post-details post="post" />-->
+        <!--</li>-->
+        <!--</ul>-->
+        <!--</div>-->
+
+        <!--</div>-->
     </div>
-    <hr/>
+
 </div>
+
 

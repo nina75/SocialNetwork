@@ -426,6 +426,17 @@ input[type=radio] {
 	margin-bottom: 10px;
 }
 
+.edit-pass input {
+	display: block;
+	margin: 20px 0;
+	height: 30px;
+	width: 250px;
+	padding-left: 10px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	
+}
+
 
 
 
