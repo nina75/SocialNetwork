@@ -3,17 +3,17 @@
         <a href="#/"><img src="img/logo-large.png" alt=""/></a>
     </div>
     <div class="login-form-container">
-        <form name="loginForm" ng-submit="login()">
+        <form name="loginForm" ng-submit="login(loginForm)">
             <div>
                 <label for="username">Username</label>
-                <input type="text" id="username" ng-model="loginData.username"/>
+                <input type="text" id="username" class="form-validation" ng-model="loginData.username" required />
             </div>
             <div>
                 <label for="password">Password</label>
-                <input type="password" id="password" ng-model="loginData.password"/>
+                <input type="password" id="password" class="form-validation" ng-model="loginData.password" required/>
             </div>
             <div>
-                <button type="submit">Log In</button>
+                <button type="submit" ng-disabled="loginForm.$invalid">Log In</button>
             </div>
         </form>
     </div>
@@ -27,12 +27,12 @@
     </section>
     <section class="reg-form-container">
         <h2>Sign Up</h2>
-        <form name="registerForm" ng-submit="register()">
-            <input type="text" placeholder="Username" ng-model="registerData.username"/>
-            <input type="password" placeholder="Password" ng-model="registerData.password"/>
-            <input type="password" placeholder="Confirm password" ng-model="registerData.confirmPassword"/>
-            <input type="text" placeholder="Name" ng-model="registerData.name"/>
-            <input type="text" placeholder="Email" ng-model="registerData.email"/>
+        <form name="registerForm" ng-submit="register(registerForm)">
+            <input class="form-validation"  type="text" placeholder="Username" ng-model="registerData.username" required/>
+            <input class="form-validation"  type="password" placeholder="Password" ng-model="registerData.password" required/>
+            <input class="form-validation"  type="password" placeholder="Confirm password" ng-model="registerData.confirmPassword" required/>
+            <input class="form-validation"  type="text" placeholder="Name" ng-model="registerData.name"  required/>
+            <input class="form-validation"  type="text" placeholder="Email" ng-model="registerData.email"  required/>
             <div class="radio-button-container">
                 <div>
                     <input type="radio" id="male" name="gender" value="0" ng-model="registerData.gender"/>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div>
-                <button class="sign-up-button" type="submit">Sign Up</button>
+                <button class="sign-up-button" type="submit" ng-disabled="registerForm.$invalid">Sign Up</button>
             </div>
         </form>
     </section>

@@ -14,7 +14,7 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
             }
             $scope.userFullData = data;
         }, function(error) {
-            notifyService.showError('Unsuccessful Connect To Database');
+            notifyService.showError(error.message);
         })
     }
 
@@ -22,7 +22,7 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
         friendsData.getUserWall(headers, username, function(data) {
             $scope.userPostsData = data;
         }, function(error) {
-            notifyService.showError('Unsuccessful Connect To Database');
+            notifyService.showError(error.message);
         })
     }
 
@@ -30,7 +30,7 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
         friendsData.getFriendsDetailedFriendsList(headers, username, function(data) {
             $scope.friendsDetailedList = data;
         }, function(error) {
-            notifyService.showError('Unsuccessful Connect To Database');
+            //notifyService.showError('To view page send FRIEND REQUEST');
         })
     }
 
@@ -39,21 +39,31 @@ app.controller('FriendWallController', function FriendWallController($scope, $lo
             $scope.showInvite = false;
             $scope.showPendingRequest = true;
         }, function(error) {
-            notifyService.showError('Unsuccessful Connect To Database');
+            notifyService.showError(error.message);
         })
     }
 
     var addNewPost = function(username) {
         posts.addNewPost(headers, {postContent: $scope.postContent,username: username}, function(data) {
-            notifyService.showInfo('Post added successful');
+            //notifyService.showInfo('Post added successful');
             getUserPosts(username);
         }, function(error) {
-            notifyService.showError('Unsuccessful Connect To Database');
+            notifyService.showError(error.message);
+        })
+    }
+
+    var deleteOwnPost = function(postId, username) {
+        posts.deletePost(postId, headers, function(data) {
+            //notifyService.showInfo("Post deleted");
+            getUserPosts(username);
+        }, function(error) {
+            notifyService.showError(error.message);
         })
     }
 
     $scope.sendFriendRequest = sendFriendRequest;
     $scope.addNewPost = addNewPost;
+    $scope.deleteOwnPost = deleteOwnPost;
 
     getUserFullData(username);
     getUserPosts(username);

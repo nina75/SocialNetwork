@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('SocialNetwork', ['ngRoute', 'naif.base64']);
+var app = angular.module('SocialNetwork', ['ngRoute', 'naif.base64', 'angular-loading-bar']);
 
 app.constant('BASE_URL', 'http://softuni-social-network.azurewebsites.net/api')
 

@@ -15,6 +15,14 @@ body, div, header, form, p, img, span, input, ul, li section, button, label, h1,
 	display: none !important;
 }
 
+/*input.ng-invalid.ng-dirty.form-validation {*/
+	/*background-color: pink;*/
+
+
+/*input.ng-valid.ng-dirty.form-validation {*/
+	/*background-color: green;*/
+/*}*/
+
 @font-face {
 	font-family: Raleway;
 	src: url('../fonts/RalewayThin.ttf');

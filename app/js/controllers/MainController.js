@@ -8,10 +8,8 @@ app.controller('MainController', function MainController($scope, $location, $rou
     var getUserProfile = function() {
         userData.getUserProfile(headers, function(data) {
             $scope.userData = data;
-            console.log(data.profileImageData);
-            $scope.myProfileImage = data.profileImageData;
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!")
+            notifyService.showError(error.message);
         })
     }
 
@@ -21,7 +19,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             $scope.postsData = postsData;
 
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!")
+            notifyService.showError(error.message);
         })
 
     }
@@ -33,7 +31,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             $scope.showRequestsCount = $scope.requestsCount > 0 ? true : false;
             $scope.requestsData = data;
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!")
+            notifyService.showError(error.message)
         })
     }
     console.log($scope.requestsCount);
@@ -45,7 +43,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             getFriendsRequests();
             getOwnFriendsPreview();
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!")
+            notifyService.showError(error.message)
         })
     }
 
@@ -55,7 +53,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             getFriendsRequests();
             getOwnFriendsPreview();
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!");
+            notifyService.showError(error.message);
         })
     }
 
@@ -72,7 +70,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             alert('Successful edit');
             $location.path('home');
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!");
+            notifyService.showError(error.message);
         })
     }
 
@@ -83,7 +81,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             notifyService.showInfo("Password changed!")
             $location.path('login');
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!")
+            notifyService.showError(error.message)
         })
     }
 
@@ -94,7 +92,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             $scope.foundUsers = data;
             $scope.showFoundUsers = true;
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!");
+            notifyService.showError(error.message);
         })
     }
 
@@ -104,7 +102,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             authentication.clearSessionStorage();
             notifyService.showInfo("Successfully logout")
         }, function (error) {
-            notifyService.showError("Unsuccessful Connection to Database!");
+            notifyService.showError(error.message);
         })
     }
 
@@ -118,7 +116,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
             $scope.friendsPreviewData = data;
             $scope.friendsCount = data.totalCount;
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!");
+            notifyService.showError(error.message);
         })
     }
 
@@ -128,23 +126,28 @@ app.controller('MainController', function MainController($scope, $location, $rou
             notifyService.showInfo("Post deleted");
             getNewFeedPages();
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!");
+            notifyService.showError(error.message);
         })
     }
     
     //edit post
     var editPost = function(postId, postContent) {
         posts.editPost(postId, {postContent: postContent}, headers, function(data) {
-            notifyService.showInfo("Successful edit post");
+            showHideEditElements();
             getNewFeedPages();
         }, function(error) {
-            notifyService.showError("Unsuccessful Connection to Database!");
+            notifyService.showError(error.message);
         })
+    }
+
+    var showHideEditElements = function(){
+        $scope.showEditPostElements = !$scope.showEditPostElements;
     }
 
     $scope.username = sessionStorage['username'];
     $scope.showFoundUsers = false;
     $scope.likeButtonText = $scope.liked ? 'Unlike' : 'Like';
+    $scope.showEditPostElements = false;
 
     $scope.getUserProfile = getUserProfile;
     $scope.approveFriendRequest = approveFriendRequest;
@@ -156,6 +159,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
     $scope.hideFoundUsers = hideFoundUsers;
     $scope.deletePost = deletePost;
     $scope.editPost = editPost;
+    $scope.showHideEditElements = showHideEditElements;
 
     if ($scope.username) {
         getUserProfile();
