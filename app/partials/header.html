@@ -47,7 +47,7 @@
                         <p>
                             <img class="profile-image-min" src="" ng-src="{{request.user.profileImageData || 'img/anon.png'}}" />
                             <!--<img class="gender-image-min" ng-src="{{request.user.gender | genderIcon}}"/>-->
-                            <span>{{request.user.name}}</span>
+                            <a href="#/user/{{user.username}}" style="color: inherit"><span>{{request.user.name}}</span></a>
                         </p>
                         <p>
                             <button class="button-min button-ok-min" ng-click="approveFriendRequest(request.id)">Accept</button>
