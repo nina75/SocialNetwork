@@ -4,6 +4,11 @@ app.controller('MainController', function MainController($scope, $location, $rou
 
     var headers = authentication.getHeaders();
 
+    var path = $location.path();
+    if (!authentication.isLogged()) {
+        $location.path('/');
+    }
+
     //header - picture and name
     var getUserProfile = function() {
         userData.getUserProfile(headers, function(data) {
@@ -21,7 +26,6 @@ app.controller('MainController', function MainController($scope, $location, $rou
         }, function(error) {
             notifyService.showError(error.message);
         })
-
     }
 
     //header - friend requests
@@ -34,8 +38,6 @@ app.controller('MainController', function MainController($scope, $location, $rou
             notifyService.showError(error.message)
         })
     }
-    console.log($scope.requestsCount);
-
 
     var approveFriendRequest = function(requestId) {
         userData.approveFriendRequest(headers, requestId, function(data) {
@@ -66,7 +68,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
         }
 
         userData.editProfile(headers, $scope.userData, function(data) {
-            alert('Successful edit');
+            notifyService.showInfo('Successfully save changes');
             $location.path('home');
         }, function(error) {
             notifyService.showError(error.message);
@@ -122,7 +124,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
     //delete post
     var deletePost = function(postId) {
         posts.deletePost(postId, headers, function(data) {
-            notifyService.showInfo("Post deleted");
+            notifyService.showInfo("Post deleted successfully");
             getNewFeedPages();
         }, function(error) {
             notifyService.showError(error.message);
@@ -132,6 +134,7 @@ app.controller('MainController', function MainController($scope, $location, $rou
     //edit post
     var editPost = function(postId, postContent) {
         posts.editPost(postId, {postContent: postContent}, headers, function(data) {
+            notifyService.showInfo("Post edit successfully");
             showHideEditElements();
             getNewFeedPages();
         }, function(error) {

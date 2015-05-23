@@ -66,5 +66,15 @@ app.factory('posts', function($http, BASE_URL) {
             })
     }
 
+    //get post likes
+    service.getPostLikes = function(postId, headers, success, error) {
+        $http.get(serviceUrl + '/' + postId + '/likes', {headers:headers})
+            .success(function(data) {
+                success(data);
+            }).error(function(data) {
+                error(data);
+            })
+    }
+
     return service;
 })

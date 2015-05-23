@@ -61,5 +61,9 @@ app.factory('authentication', function($http, BASE_URL) {
         };
     }
 
+    service.isLogged = function () {
+        return sessionStorage['accessToken'];
+    };
+
     return service;
 })
