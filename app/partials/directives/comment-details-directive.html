@@ -1,0 +1,10 @@
+<div class="clearfix">
+    <img style="float: left;width:25px;height:25px" src="" data-ng-src="{{comment.author.profileImageData}}" alt="{{post.author.username}}" />
+    <div>
+        <span style="color: #3675B5;font-size: 12px"><a href="#/user/{{comment.author.username}}" style="color:inherit">{{comment.author.name}}</a></span>
+        <span style="font-size: 12px;">{{comment.commentContent}}</span>
+    </div>
+    <div>
+        <span style="font-size: 12px;color: #777;font-family: Consolas">{{comment.date | date}}</span>
+    </div>
+</div>
