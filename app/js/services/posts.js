@@ -3,11 +3,11 @@
 app.factory('posts', function($http, BASE_URL) {
     var service = {};
 
-    var serviceUrl = BASE_URL + '/Posts';
+    var serviceUrl = BASE_URL + '/Posts/';
 
     //like post
     service.likePost = function(postId, headers, success, error) {
-        $http.post(serviceUrl + '/' + postId + '/likes', null, {headers:headers})
+        $http.post(serviceUrl + postId + '/likes', null, {headers:headers})
             .success(function(data) {
                 success(data);
             }).error(function(data) {
@@ -17,7 +17,7 @@ app.factory('posts', function($http, BASE_URL) {
 
     //unlike post
     service.unlikePost = function(postId, headers, success, error) {
-        $http.delete(serviceUrl + '/' + postId + '/likes', {headers:headers})
+        $http.delete(serviceUrl + postId + '/likes', {headers:headers})
             .success(function(data) {
                 success(data);
             }).error(function(data) {
