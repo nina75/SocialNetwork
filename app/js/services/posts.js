@@ -58,7 +58,7 @@ app.factory('posts', function($http, BASE_URL) {
 
     //edit post by Id
     service.editPost = function(postId, postData, headers, success, error) {
-        $http.put(serviceUrl + '/' + postId, postData, {headers: headers})
+        $http.put(serviceUrl + postId, postData, {headers: headers})
             .success(function(data) {
                 success(data);
             }).error(function(data) {
