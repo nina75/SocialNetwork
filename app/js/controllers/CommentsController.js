@@ -30,11 +30,13 @@ app.controller('CommentsController', function CommentsController($scope, authent
     //delete comment
     var deleteComment = function(postId, commentId) {
         comments.deleteComment(postId, commentId, headers, function(data) {
-            alert('dadada');
+            notifyService.showInfo('Comment deleted');
+            getPostComments(postId);
         }, function(error) {
             notifyService.showError(error.message);
         })
     }
+
 
     $scope.showAllComments = false;
     $scope.commentPost = commentPost;

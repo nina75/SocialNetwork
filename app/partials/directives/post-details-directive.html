@@ -37,10 +37,9 @@
 
         <ul ng-show="showAllComments">
             <li ng-repeat="comment in commentsData | orderBy: date">
-                <!--<button ng-click="deleteComment(post.id, comment.id)">Edit</button>-->
                 <div class="comments-button-container" ng-show="comment.author.username === username">
-                    <button ng-click="deleteComment(post.id, comment.id)">Edit</button>
-                    <button>Delete</button>
+                    <button ng-click="">Edit</button>
+                    <button ng-click="deleteComment(post.id, comment.id)">Delete</button>
                 </div>
                 <div comment-details comment="comment" />
             </li>
