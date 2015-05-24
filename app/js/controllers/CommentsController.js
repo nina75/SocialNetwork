@@ -37,7 +37,6 @@ app.controller('CommentsController', function CommentsController($scope, authent
         })
     }
 
-
     $scope.showAllComments = false;
     $scope.commentPost = commentPost;
     $scope.getPostComments = getPostComments;
