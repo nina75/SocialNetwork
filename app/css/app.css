@@ -432,6 +432,9 @@ input[type=radio] {
 
 .post-item {
 	margin-bottom: 10px;
+}
+
+.clearfix.post-item {
 	border-bottom: 1px solid #ccc;
 }
 
