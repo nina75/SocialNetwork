@@ -27,7 +27,7 @@ app.factory('posts', function($http, BASE_URL) {
 
     //get post by id
     service.getPostById = function(postId, headers, success, error) {
-        $http.get(serviceUrl + '/' + postId, {headers: headers})
+        $http.get(serviceUrl + postId, {headers: headers})
             .success(function(data) {
                 success(data);
             }).error(function(data) {
