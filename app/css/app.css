@@ -432,6 +432,7 @@ input[type=radio] {
 
 .post-item {
 	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
 }
 
 .edit-pass input {
@@ -512,6 +513,7 @@ input[type=radio] {
 	text-decoration: underline;
 	cursor: pointer;
 }
+
 
 
 
