@@ -2,9 +2,9 @@
     <div class="clearfix post-item">
         <img class="post-item-image" src="" data-ng-src="{{post.author.profileImageData}}" alt="{{post.author.username}}" />
         <div>
-            <span style="color: #3675B5"><a style="color: inherit" href="#/user/{{post.author.username}}">{{post.author.name}}</a></span>
+            <span style="color: #3675B5"><a href="#/user/{{post.author.username}}">{{post.author.name}}</a></span>
             <span> to </span>
-            <span style="color: #3675B5"><a  style="color:inherit" href="#/user/{{post.wallOwner.username}}">{{post.wallOwner.name}}</a></span>
+            <span style="color: #3675B5"><a href="#/user/{{post.wallOwner.username}}">{{post.wallOwner.name}}</a></span>
         </div>
         <div class="post-item">
             <span style="font-size: 12px;color: #777;font-family: Consolas">{{post.date | date}}</span>
