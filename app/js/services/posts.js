@@ -37,7 +37,7 @@ app.factory('posts', function($http, BASE_URL) {
 
     //add new post
     service.addNewPost = function(headers, postData, success, error) {
-        $http.post(BASE_URL + '/posts', postData, {headers: headers})
+        $http.post(BASE_URL + 'posts', postData, {headers: headers})
             .success(function(data) {
                 success(data);
             }).error(function(data) {
@@ -47,7 +47,7 @@ app.factory('posts', function($http, BASE_URL) {
 
     //delete post by Id
     service.deletePost = function(postId, headers, success, error) {
-        $http.delete(serviceUrl + '/' + postId, {headers: headers})
+        $http.delete(serviceUrl + postId, {headers: headers})
             .success(function(data) {
                 success(data);
             }).error(function(data) {
