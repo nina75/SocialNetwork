@@ -517,6 +517,12 @@ input[type=radio] {
 	cursor: pointer;
 }
 
+.post-item-image {
+	float: left;
+	width:30px;
+	height:30px
+}
+
 
 
 
